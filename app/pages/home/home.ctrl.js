@@ -1,5 +1,5 @@
 ﻿
-app.controller("HomeCtrl", function ($scope, $http, $location, HistoryManager, MetaDataManager, DataManager) {
+app.controller("HomeCtrl", function ($scope, $http, HistoryManager, MetaDataManager, DataManager) {
 
     $scope.historyLinks = HistoryManager.getLinks();
     $scope.currentLink;
@@ -216,10 +216,11 @@ app.controller("HomeCtrl", function ($scope, $http, $location, HistoryManager, M
         myDiagram.model.undoManager.isEnabled = true;
         
         /* Check to see if there is a OData service after site URL */
-        var qPos = $location.path().indexOf("?");
+        debugger;
+        var qPos = document.URL.indexOf("?");
         if(qPos != -1){
-            var serviceURL = $location.path().substring(qPos); // get service URL
-            changeDataUrl(serviceURL);
+            var serviceURL = document.URL.substring(qPos+1); // get service URL
+            $scope.changeDataUrl(serviceURL);
         }
     }
     init();
