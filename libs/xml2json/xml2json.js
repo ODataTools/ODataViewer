@@ -1,5 +1,6 @@
 ﻿
 function xml2json(xml, tab) {
+    var M = " aa ";
     var X = {
         toObj: function (xml) {
             var o = {};
