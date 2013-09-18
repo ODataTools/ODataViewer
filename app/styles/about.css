@@ -1,0 +1,32 @@
+#staff .member {
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  margin-top: 75px;
+}
+#staff .member .photo {
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+}
+#staff .member .name {
+  font-family: 'Lato', sans-serif !important;
+  font-weight: bold;
+  color: inherit;
+  text-rendering: optimizelegibility;
+  margin: 0 0 14px 0;
+  font-size: 20px;
+}
+#staff .member .description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 23px;
+}
+#staff .member .contact-info i {
+  display: block;
+  text-align: center;
+  font-size: 175%;
+  color: gray;
+  cursor: pointer;
+}
+

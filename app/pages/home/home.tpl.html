@@ -1,0 +1,160 @@
+﻿<div style="position: relative; height: 100%;">
+    <div class="snap-drawers">
+        <div class="snap-drawer snap-drawer-left">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <header>
+                            <h2>Settings</h2>
+                        </header>
+                        <hr />
+
+
+
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="url" ng-model="currentLink" />
+                            </div>
+                            <div class="form-group">
+
+                                <button type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
+                            </div>
+
+                        </form>
+
+                        <hr />
+
+                        <ul id="history-links" class="list-unstyled">
+                            <li ng-repeat="link in historyLinks"  ng-class="{'active':isSelectedLink(link)}"><label ng-click="changeDataUrl(link);">{{link}}</label><button class="delete-btn" ng-click="removeHistoryLink(link);">×</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="snap-drawer snap-drawer-right">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <header>
+                            <h2>Meta-Data</h2>
+                        </header>
+                        <hr />
+
+
+                        <div id="sample">
+                            <div id="myDiagram" style="background-color: white; border: solid 1px black; width: 100%; height: 700px"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="snap-content">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-2">
+                    <button class="btn btn-default btn-block" ng-click="showSettings()"><i class="icon-gear"></i>Settings</button>
+                </div>
+
+                <div class="col-md-8">
+
+                    <div id="site-logo">
+                        <img class="img-responsive" src="/resources/logo.png" />
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-default btn-block" ng-click="showMetaData()"><i class="icon-list-ul"></i>Meta-Data</button>
+                </div>
+            </div>
+
+            <hr />
+
+            <form role="form" class="row" style="margin-bottom:0px;">
+
+                <div class="form-group col-md-12">
+
+                    <intellisense metadata="metadata" model="intellisenseUrl" />
+
+                </div>
+
+                <!--                <div class="col-md-2">
+                    <div class="btn-group pull-right" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="options" id="option1">
+                            Plain JSON
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="options" id="option2">
+                            Table
+                        </label>
+                    </div>
+                </div>-->
+
+                <div class="visible-sm visible-xs form-group col-md-12">
+                    <button type="button" class="form-control btn-primary btn-lg">Go</button>
+                </div>
+
+
+            </form>
+
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="data-container">
+
+                        <div class="btn-group pull-right" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="options" id="option1">
+                                Plain JSON
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" id="option2">
+                                Table
+                            </label>
+                        </div>
+
+                        <!--   <div class="text-muted">
+                            <label><small>Current URL:</small></label>
+                            <span>{{currentLink}}</span>
+                        </div>-->
+
+
+
+                        <div id="jsonviewer">
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <footer id="site-footer">
+            Project maintained by ODataViewer Team ● Visit us on <a href="http://hasanaboshally.github.io/OData/">Github</a> ● Follow us on <a href="http://twitter.com/OData/">Twitter</a> ●
+            <br />
+            Visit our <a href="http://odataGallery.com">OData Providers Gallery </a>
+            <br />
+            2013 © All rights reserved
+        </footer>
+
+
+    </div>
+</div>
+
+
+<script script-runner>
+    snapper = new Snap({
+        element: document.getElementById('content')
+    });
+</script>
+

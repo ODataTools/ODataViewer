@@ -1,0 +1,30 @@
+﻿<div style="position: relative">
+
+    <input type="text" id="intellisense-input" ng-model="model" class="form-control" placeholder="query.." />
+
+    <section id="intellisense-suggestions">
+
+        <!-- | orderBy:'@Name'| filter:{type:'query'} |-->
+
+        <ul id="query-suggestions" class="list-unstyled">
+
+            <li class="no-suggestions" ng-show="(suggestions.length == 0)">- no suggestions -</li>
+
+            <li data-ng-repeat="suggestion in suggestions" ng-class="{'selected':($index == selectedSuggestionsIndex)}">
+                <i ng-class="{
+                    'icon-gear': (suggestion.type == 'Entity'),
+                    'icon-file-text': (suggestion.type == 'Property'),
+                    'icon-link': (suggestion.type == 'NavigationProperty')
+                    }"></i>{{ suggestion['@Name']}}
+                <!--, 'icon-usd': (!suggestion['@EntityType'])-->
+            </li>
+        </ul>
+
+        <!--        <ul id="entity-suggestions" class="list-unstyled">
+            <li data-ng-repeat="item in suggestions | filter:{type:'entity'} | orderBy:'name'">
+                <i class="icon-gear"></i>{{item['@Name']}}
+            </li>
+        </ul>-->
+
+    </section>
+</div>

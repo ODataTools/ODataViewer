@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>OData Explorer 1.0 beta</title>
+
+    <!-- Metas for mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+
+    <!-- Lib Styles -->
+    <link href="libs/bootstrap-3/bootstrap.no-icons.min.css" rel="stylesheet" />
+    <link href="/libs/bootstrap-3/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/libs/snap/snap.css" rel="stylesheet" />
+    <link href="libs/jquery.jsonview/jquery.jsonview.css" rel="stylesheet" />
+    <!-- Styles -->
+    <link href="/app/styles/app.min.css" rel="stylesheet" />
+
+</head>
+
+<body ng-app="ODataViewerApp">
+
+    <!--    <header id="site-header" class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex8-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="icon-bar"></i>
+                <i class="icon-bar"></i>
+                <i class="icon-bar"></i>
+            </button>
+            <a class="navbar-brand" href="#/">OData Viewer
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex8-collapse">
+            <ul class="nav navbar-nav" navigation-menu>
+                <li><a href="#/analyze">Analyze</a></li>
+                <li><a href="#/archive">Archive</a></li>
+                <li><a href="#/about">About</a></li>
+            </ul>
+        </div>
+    </header>-->
+
+    <div ng-view>
+    </div>
+
+    <!-- Lib Scripts -->
+    <script src="/libs/jquery-2.0.3/jquery-2.0.3.min.js"></script>
+    <script src="/libs/bootstrap-3/bootstrap.min.js"></script>
+    <script src="libs/snap/snap.js"></script>
+    <script src="libs/jquery.jsonview/jquery.jsonview.js"></script>
+
+    <script src="libs/xml2json/xml2json.js"></script>
+    <script src="libs/go.js/go.js"></script>
+
+    <script src="/libs/angular-1.2.0rc1/angular.min.js"></script>
+    <script src="/libs/angular-1.2.0rc1/angular-resource.min.js"></script>
+    <script src="/libs/angular-1.2.0rc1/angular-route.min.js"></script>
+    <script src="/libs/angular-1.2.0rc1/angular-animate.min.js"></script>
+
+    <!-- Dependencies -->
+    <!-- -- Intellisense -->
+    <script src="app-plugins/intellisense/intellisense.js"></script>
+    <script src="app-plugins/intellisense/intellisense-module.js"></script>
+    <script src="app-plugins/intellisense/directive/intellisense.js"></script>
+    <link href="app-plugins/intellisense/directive/intellisense.css" rel="stylesheet" />
+
+
+    <!-- App -->
+    <script src="/app/app.js"></script>
+    <script src="/app/app.config.js"></script>
+
+    <!-- Services -->
+    <script src="app/services/history-manager.js"></script>
+    <script src="app/services/metadata-manager.js"></script>
+    <script src="app/services/data-manager.js"></script>
+
+    <!-- Filters -->
+
+    <!-- Directives -->
+    <script src="/app/directives/progressbar/progressbar.js"></script>
+    <script src="/app/directives/navigation-menu/navigation-menu.ctrl.js"></script>
+    <script src="app/directives/script-runner/script-runner.js"></script>
+    <script src="app/directives/typeahead/typeahead.js"></script>
+
+    <!-- Controllers -->
+    <script src="/app/pages/home/home.ctrl.js"></script>
+
+</body>
+</html>
