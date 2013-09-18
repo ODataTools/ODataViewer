@@ -97,10 +97,10 @@ angular.module('Intellisense').directive('intellisense', function () {
                             $("#intellisense-suggestions").slideUp(100);
                         }
                             break;
+                            //case keys.RETURN: {
+                            //}
+                            //    break;
                         case keys.TAB: {
-                        }
-                            break;
-                        case keys.RETURN: {
                             var txt = $("#intellisense-input").val();
                             var suggestion = scope.suggestions[scope.selectedSuggestionsIndex]['@Name'];
 

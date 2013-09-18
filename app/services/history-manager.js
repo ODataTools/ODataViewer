@@ -1,4 +1,4 @@
-app.service("HistoryManager", function () {
+﻿app.service("HistoryManager", function () {
 	// Array Remove - By John Resig (MIT Licensed)
 	Array.prototype.remove = function(from, to) {
 		if(from == -1)
