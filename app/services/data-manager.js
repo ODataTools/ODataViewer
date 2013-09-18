@@ -41,7 +41,7 @@
     }
 
     function getData(url) {
-
+/*
         var demoJson = {
             "odata.metadata": "http://services.odata.org/V3/OData/OData.svc/$metadata#Products",
             "value": [
@@ -148,8 +148,12 @@
                     }
             ]
         }
-
-        return demoJson;
+*/ 
+         if (url.indexOf("?") == -1)
+                url += "?$format=json";
+            else
+                url += "&$format=json";
+            return $.get(url);
     }
 
     return {
