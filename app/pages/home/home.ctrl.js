@@ -1,5 +1,5 @@
 ﻿
-app.controller("HomeCtrl", function ($scope, $http, HistoryManager, MetaDataManager, DataManager) {
+app.controller("HomeCtrl", function ($scope, $http, $location, HistoryManager, MetaDataManager, DataManager) {
 
     $scope.historyLinks = HistoryManager.getLinks();
     $scope.currentLink;
@@ -214,6 +214,13 @@ app.controller("HomeCtrl", function ($scope, $http, HistoryManager, MetaDataMana
         myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 
         myDiagram.model.undoManager.isEnabled = true;
+        
+        /* Check to see if there is a OData service after site URL */
+        var qPos = $location.path().indexOf("?");
+        if(qPos != -1){
+            var serviceURL = $location.path().substring(qPos); // get service URL
+            changeDataUrl(serviceURL);
+        }
     }
     init();
 
