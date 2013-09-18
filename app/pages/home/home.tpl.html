@@ -25,7 +25,9 @@
                         <hr />
 
                         <ul id="history-links" class="list-unstyled">
-                            <li ng-repeat="link in historyLinks"  ng-class="{'active':isSelectedLink(link)}"><label ng-click="changeDataUrl(link);">{{link}}</label><button class="delete-btn" ng-click="removeHistoryLink(link);">×</button></li>
+                            <li ng-repeat="link in historyLinks" ng-class="{'active':isSelectedLink(link)}">
+                                <label ng-click="changeDataUrl(link);">{{link}}</label>
+                                <button class="delete-btn" ng-click="removeHistoryLink(link);">×</button></li>
                         </ul>
                     </div>
                 </div>
@@ -75,11 +77,11 @@
 
             <hr />
 
-            <form role="form" class="row" style="margin-bottom:0px;">
+            <form role="form" class="row" style="margin-bottom: 0px;">
 
                 <div class="form-group col-md-12">
 
-                    <intellisense metadata="metadata" model="intellisenseUrl" />
+                    <intellisense metadata="metadata" model="intellisenseQuery" />
 
                 </div>
 
@@ -96,8 +98,9 @@
                     </div>
                 </div>-->
 
-                <div class="visible-sm visible-xs form-group col-md-12">
-                    <button type="button" class="form-control btn-primary btn-lg">Go</button>
+                <div class="form-group col-md-12">
+                    <!--visible-sm visible-xs -->
+                    <button type="button" class="form-control btn-primary btn-lg" ng-click="loadData();">Go</button>
                 </div>
 
 

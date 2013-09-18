@@ -26,6 +26,8 @@ app.controller("HomeCtrl", function ($scope, $http, HistoryManager, MetaDataMana
 
     $scope.changeDataUrl = function (url) {
 
+        $scope.currentLink = url;
+
         // Remove the trailing slash (if exists) from the url. 
         if (url.substr(-1) == '/')
             url = url.substr(0, url.length - 1);
@@ -39,12 +41,21 @@ app.controller("HomeCtrl", function ($scope, $http, HistoryManager, MetaDataMana
             $('#intellisense-input').focus();
         });
 
-       
-    }
 
+    }
 
     $scope.removeHistoryLink = function (url) {
         HistoryManager.removeLink(url);
+    }
+
+    $scope.loadData = function () {
+
+        var query = $scope.intellisenseQuery || '';
+        var url = $scope.currentLink + "/" + query;
+
+        DataManager.getData(url).then(function (result) {
+            $("#jsonviewer").JSONView(result);
+        });
     }
 
 
@@ -204,25 +215,7 @@ app.controller("HomeCtrl", function ($scope, $http, HistoryManager, MetaDataMana
 
         myDiagram.model.undoManager.isEnabled = true;
     }
-
     init();
-
-
-
-
-
-
-
-
-    $("#jsonviewer").JSONView(DataManager.getData());
-
-
-
-
-
-
-
-
 
 
 

@@ -19,9 +19,6 @@ angular.module('Intellisense').directive('intellisense', function () {
                 if (scope.metadata) {
                     intellisenseProvider = new Intellisense(scope.metadata);
                     scope.selectedSuggestionsIndex = 0;
-
-
-
                 }
             });
 
@@ -42,26 +39,26 @@ angular.module('Intellisense').directive('intellisense', function () {
                 };
 
 
-                function append(str, intel){
-					var parts = str.split('?');
-	
-					if(parts.length == 1){
-						return addIntel(str, intel, '/');
-					}
-	
-					var lastQuery = parts[1].split('&').pop();
-					var queryParts = lastQuery.split('=');
-	
-					if(queryParts.length == 1){
-						return parts[0] + '?' +  addIntel(parts[1], intel, '&');
-					}
-	
-					lastQueryArr = lastQuery.split('=');
-	
-					return parts[0] + '?' + parts[1].join('&') + '&'+ lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ' ');
-				}
-                
-				function addIntel(str, intel, sep) {
+                function append(str, intel) {
+                    var parts = str.split('?');
+
+                    if (parts.length == 1) {
+                        return addIntel(str, intel, '/');
+                    }
+
+                    var lastQuery = parts[1].split('&').pop();
+                    var queryParts = lastQuery.split('=');
+
+                    if (queryParts.length == 1) {
+                        return parts[0] + '?' + addIntel(parts[1], intel, '&');
+                    }
+
+                    lastQueryArr = lastQuery.split('=');
+
+                    return parts[0] + '?' + parts[1].join('&') + '&' + lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ' ');
+                }
+
+                function addIntel(str, intel, sep) {
                     var tmp = (sep === ' ') ? str.split(/\s+/) : str.split(sep);
                     tmp.pop();
                     tmp.push(intel);
@@ -107,7 +104,10 @@ angular.module('Intellisense').directive('intellisense', function () {
                             var txt = $("#intellisense-input").val();
                             var suggestion = scope.suggestions[scope.selectedSuggestionsIndex]['@Name'];
 
-                            $("#intellisense-input").val(append(txt, suggestion));
+                            scope.$apply(function () {
+                                scope.model = append(txt, suggestion);
+
+                            });
                         }
                             break;
                         case keys.UP: {
