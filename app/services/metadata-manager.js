@@ -1,5 +1,5 @@
 ﻿
-app.service("MetaDataManager", function ($http) {
+app.service("MetaDataManager", function ($http, $q) {
 
     var _json;
 
@@ -8,12 +8,27 @@ app.service("MetaDataManager", function ($http) {
     }
 
     function set(xml) {
-        _json = JSON.parse(xml2json(xml,''));
+        _json = JSON.parse(xml2json(xml, ''));
     }
 
+    function setFromUrl(url) {
+
+        url += "/$metadata";
+
+        var p = $q.defer();
+
+        return $http.get(url).then(function (result) {
+            var xmlDoc = (new DOMParser()).parseFromString(result.data, "text/xml");
+            set(xmlDoc);
+            p.resolve();
+        });
+
+        return p.promise;
+    }
 
     return {
         getJSON: get,
-        setFromXML: set
+        setFromXML: set,
+        setFromUrl: setFromUrl
     }
 });

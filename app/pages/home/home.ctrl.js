@@ -27,25 +27,19 @@ app.controller("HomeCtrl", function ($scope, $http, HistoryManager, MetaDataMana
     $scope.changeDataUrl = function (url) {
 
         // Remove the trailing slash (if exists) from the url. 
-        if (url.substr(-1) == '/') {
+        if (url.substr(-1) == '/')
             url = url.substr(0, url.length - 1);
-        }
 
-        // Save the link
+        // Save the link to history
         HistoryManager.addLink(url);
 
-
-
-        url += "/$metadata";
-
-        $http.get(url).then(function (result) {
-            var xmlDoc = (new DOMParser()).parseFromString(result.data, "text/xml");
-            MetaDataManager.setFromXML(xmlDoc);
+        MetaDataManager.setFromUrl(url).then(function () {
             $scope.metadata = MetaDataManager.getJSON();
-
             snapper.close();
             $('#intellisense-input').focus();
         });
+
+       
     }
 
 
