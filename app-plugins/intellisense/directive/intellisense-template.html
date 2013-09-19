@@ -1,12 +1,13 @@
 ﻿<div style="position: relative">
 
-    <input type="text" id="intellisense-input" ng-model="model" class="form-control" placeholder="query.." />
+    <input
+        type="text" id="intellisense-input" class="form-control" placeholder="query.." ng-model="model" ng-keydown="onKeyDown($event)" ng-blur="isShowSuggestions = false" />
 
-    <section id="intellisense-suggestions">
+    <section id="intellisense-suggestions" ng-show="isShowSuggestions">
 
         <!-- | orderBy:'@Name'| filter:{type:'query'} |-->
 
-        <ul id="query-suggestions" class="list-unstyled">
+        <ul id="query-suggestions" class="list-unstyled" >
 
             <li class="no-suggestions" ng-show="(suggestions.length == 0)">- no suggestions -</li>
 

@@ -8,7 +8,7 @@
 }
 
 #intellisense-suggestions {
-    display: none; /* Hide initially*/
+ /*   display: none;  Hide initially*/
     position: absolute;
     top: 35px;
     width: 350px;
