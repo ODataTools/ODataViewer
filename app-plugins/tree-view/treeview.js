@@ -1,9 +1,9 @@
 ﻿
 
-angular.module('OdataApp').directive('treeView', function () {
+app.directive('treeView', function () {
     return {
         restrict: 'E',
-        templateUrl: 'treeview/directives/template.html',
+        template: '<ul id="tree" class="filetree"></ul>',
         scope: {
             sourceData: '='
         },
@@ -15,6 +15,7 @@ angular.module('OdataApp').directive('treeView', function () {
 
                 for (var i in data) {
 
+                    
                     var li_Entity = $('<li class="folder">')
                         .append($('<span class="folder">').text(data[i]['@Name'])),
                         ul_Entity = $('<ul>');
@@ -87,15 +88,26 @@ angular.module('OdataApp').directive('treeView', function () {
                 return ul_Entities;
 
             }
-            scope.$watch('sourceData', function () {
-                if (Object.keys(scope.sourceData).length>0) {
-                    $('#tree').append($('<li>')
-                    .append($('<span class="folder">').text(scope.sourceData['DataServices']['Schema']['@Namespace']))
-                    .append($('<ul>').append($('<li>').append($('<span class="folder">').text('Entity Set'))
-                    .append(tree(scope.sourceData['DataServices']['Schema']['EntityType'])))));
 
-                    $("#tree").treeview();
-                };
+            scope.$watch('sourceData', function () {
+
+                var schema;
+
+                try {
+                    schema = scope.sourceData['edmx:Edmx']['edmx:DataServices']['Schema'];
+                }
+                catch (e) {
+                    return;
+                }
+
+                $('#tree').append($('<li>')
+                .append($('<span class="folder">').text(schema['@Namespace']))
+                .append($('<ul>').append($('<li>').append($('<span class="folder">').text('Entity Set'))
+                .append(tree(schema['EntityType'])))));
+
+                $("#tree").treeview();
+
+
             });
 
         }

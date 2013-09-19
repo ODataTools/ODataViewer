@@ -10,5 +10,3 @@ app.config(function ($routeProvider) {
 // App Constants
 app.constants = [];
 app.constants["apiPath"] = "http://127.0.0.1:8000";
-
-

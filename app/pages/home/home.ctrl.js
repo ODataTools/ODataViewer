@@ -1,10 +1,11 @@
 ﻿
-app.controller("HomeCtrl", function ($scope, $http,$routeParams, HistoryManager, MetaDataManager, DataManager) {
+app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager, MetaDataManager, DataManager) {
 
     $scope.historyLinks = HistoryManager.getLinks();
     $scope.currentLink;
     $scope.metadata;
-
+    $scope.jsonData;
+    $scope.dataViewType = 5;
 
     $scope.isSelectedLink = function (link) {
         return (link === $scope.currentLink);
@@ -49,12 +50,15 @@ app.controller("HomeCtrl", function ($scope, $http,$routeParams, HistoryManager,
     }
 
     $scope.loadData = function () {
-
+        alert("load..");
         var query = $scope.intellisenseQuery || '';
         var url = $scope.currentLink + "/" + query;
 
         DataManager.getData(url).then(function (result) {
-            $("#jsonviewer").JSONView(result);
+
+            $scope.$apply(function () {
+                $scope.jsonData = result;
+            });
         });
     }
 });

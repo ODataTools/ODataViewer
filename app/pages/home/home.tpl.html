@@ -44,10 +44,7 @@
                         </header>
                         <hr />
 
-
-                        <div id="sample">
-                            <div id="myDiagram" style="background-color: white; border: solid 1px black; width: 100%; height: 700px"></div>
-                        </div>
+                        <tree-view source-data="metadata"></tree-view>
 
                     </div>
                 </div>
@@ -80,7 +77,15 @@
 
             <form role="form" class="row" style="margin-bottom: 0px;">
 
+
+
+
                 <div class="form-group col-md-10">
+
+                    <div class="text-muted">
+                        <label><small>Current URL:</small></label>
+                        <span>{{currentLink}}</span>
+                    </div>
 
                     <intellisense metadata="metadata" model="intellisenseQuery" />
 
@@ -113,27 +118,24 @@
                 <div class="col-md-12">
                     <div id="data-container">
 
-                        <div class="btn-group pull-right" data-toggle="buttons">
-                            <label class="btn btn-primary active">
-                                <input type="radio" name="options" id="option1">
-                                Plain JSON
+
+                        <div class="btn-group pull-right" data-toggle="options">
+                            <label class="btn btn-default">
+                                <input ng-model="dataViewType" value="json" type="radio" name="options">
+                                JSON
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" name="options" id="option2">
+                                <input ng-model="dataViewType" value="table" type="radio" name="options">
                                 Table
                             </label>
                         </div>
 
-                        <!--   <div class="text-muted">
-                            <label><small>Current URL:</small></label>
-                            <span>{{currentLink}}</span>
-                        </div>-->
 
 
 
-                        <div id="jsonviewer">
-                        </div>
+                        <div json-viewer ng-show="(dataViewType == 'json')" model="jsonData"></div>
 
+                        <div data-table ng-show="(dataViewType == 'table')" model="jsonData">aaa</div>
 
 
 
