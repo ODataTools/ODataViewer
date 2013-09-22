@@ -29,11 +29,11 @@
 
 
 
-                            <li ng-repeat="link in historyLinks" ng-click="changeDataUrl(link);">
+                            <li ng-repeat="link in historyLinks">
                                 <!--ng-class="{'active':isSelectedLink(link)}"-->
                                 <div class="alert alert-warning alert-dismissable">
                                     <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    {{link}}
+                                    <span ng-click="changeDataUrl(link);">{{link}}</span>
                                 </div>
                             </li>
 
@@ -88,20 +88,20 @@
             <div class="row text-muted">
                 <div class="col-md-12">
                     <label><small>Current URL:</small></label>
-                    <span>{{currentLink}} &nbsp;</span>
+                    <a href="{{currentLink}}" target="_blank"><strong>{{currentLink}} &nbsp;</strong></a>
                 </div>
             </div>
 
 
             <form role="form" class="row" style="margin-bottom: 0px;">
 
-                <div class="form-group col-md-11">
-                    <intellisense metadata="metadata" model="intellisenseQuery" />
+                <div class="form-group col-md-12">
+                    <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 
-                <div class="form-group col-md-1">
+                <!--       <div class="form-group col-md-1">
                     <button type="button" class="btn btn-block btn-primary" ng-click="loadData();">Go</button>
-                </div>
+                </div>-->
 
             </form>
 
@@ -124,7 +124,7 @@
                             </label>
                         </div>
 
-                        <div json-view ng-show="(dataViewType != 'table')" model="jsonData"></div>
+                        <div json-view ng-show="(dataViewType == 'json')" model="jsonData"></div>
 
                         <div data-table ng-show="(dataViewType == 'table')" model="jsonData"></div>
 

@@ -17,7 +17,7 @@ app.service("MetaDataManager", function ($http, $q) {
 
         var p = $q.defer();
 
-        return $http.get(url).then(function (result) {
+        return $http.get(url, { headers: { 'Accept': "*/*" } }).then(function (result) {
             var xmlDoc = (new DOMParser()).parseFromString(result.data, "text/xml");
             set(xmlDoc);
             p.resolve();

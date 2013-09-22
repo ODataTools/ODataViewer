@@ -1,7 +1,7 @@
 ﻿<div style="position: relative">
 
     <input
-        type="text" id="intellisense-input" class="form-control" placeholder="query.." ng-model="model" ng-keydown="onKeyDown($event)" ng-blur="isShowSuggestions = false" />
+        type="text" id="intellisense-input" class="form-control" placeholder="query.." ng-model="model" ng-focus="showSuggestions('')" ng-blur="isShowSuggestions = false" />   <!--ng-keydown="onKeyDown($event);"-->
 
     <section id="intellisense-suggestions" ng-show="isShowSuggestions">
 

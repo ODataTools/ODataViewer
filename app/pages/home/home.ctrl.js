@@ -60,6 +60,12 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         });
     }
 
+    $scope.onIntellisenseSubmit = function (query) {
+        $scope.loadData();
+    }
+
+
+    //****************************************************************************************************
 
     snapper = new Snap({
         element: document.getElementById('content')

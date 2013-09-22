@@ -78,54 +78,6 @@
 .btn i {
   margin-right: 5px;
 }
-/*.twitter-typeahead .tt-hint {
-    display: block;
-    height: 38px;
-    padding: 8px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    border: 1px solid transparent;
-}*/
-/*#data-container {
-    background:white;
-    padding:10px;
-    	-webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
-}
-
-#data-container:before, #data-container:after
-{
-	position: absolute;
-	width: 40%;
-	height: 10px;
-	content: ' ';
-	left: 20px;
-	bottom: 20px;
-	background: transparent;
-	-webkit-transform: skew(-5deg) rotate(-5deg);
-	-moz-transform: skew(-5deg) rotate(-5deg);
-	-ms-transform: skew(-5deg) rotate(-5deg);
-	-o-transform: skew(-5deg) rotate(-5deg);
-	transform: skew(-5deg) rotate(-5deg);
-	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	z-index: -1;
-        background:white;
-} 
-
-#data-container:after
-{
-    background:white;
-	left: auto;
-	right: 20px;
-	-webkit-transform: skew(5deg) rotate(5deg);
-	-moz-transform: skew(5deg) rotate(5deg);
-	-ms-transform: skew(5deg) rotate(5deg);
-	-o-transform: skew(5deg) rotate(5deg);
-	transform: skew(5deg) rotate(5deg);
-}*/
 #data-container {
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);

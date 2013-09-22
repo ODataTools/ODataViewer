@@ -8,66 +8,23 @@ angular.module('Plugins').directive('intellisense', function () {
         templateUrl: '/app-plugins/intellisense/intellisense-template.html',
         scope: {
             model: '=',
-            metadata: '='
+            metadata: '=',
+            onSubmit: '&'
         },
         replace: true,
         link: function (scope, iElement, iAttrs, controller) {
 
-            scope.suggestions = [];
-            scope.selectedSuggestionsIndex = 0;
-            scope.isShowSuggestions = false;
-
             var intellisenseProvider;
 
-            scope.$watch(function () { return scope.metadata }, function (newVal, oldVal) {
+            scope.$watch('metadata', function (newVal, oldVal) {
                 if (scope.metadata) {
                     intellisenseProvider = new Intellisense(scope.metadata);
+                    scope.suggestions = [];
                     scope.selectedSuggestionsIndex = 0;
+                    scope.isShowSuggestions = false;
+                    scope.model = "";
                 }
             });
-
-            scope.onKeyDown = function ($event) {
-                if (intellisenseProvider) {
-
-                    switch ($event.keyCode) {
-                        case keys.ESC: {
-                            scope.isShowSuggestions = false;
-                            return false;
-                        }
-                            break;
-                        case keys.RETURN: {
-                            var suggestion = scope.suggestions[scope.selectedSuggestionsIndex]['@Name'];
-                            scope.model = Intellisense.appendSuggestion(scope.model, suggestion);
-
-                            scope.isShowSuggestions = false;
-                            return false;
-                        }
-                            break;
-                        case keys.SPACE: { return false; }
-
-                            break;
-                        case keys.UP: {
-
-                            if (scope.selectedSuggestionsIndex > 0)
-                                setSelectedSuggestion(scope.selectedSuggestionsIndex - 1);
-
-                            return false;
-                        }
-                            break;
-                        case keys.DOWN: {
-
-                            if (scope.selectedSuggestionsIndex < scope.suggestions.length - 1)
-                                setSelectedSuggestion(scope.selectedSuggestionsIndex + 1);
-
-                            return false;
-                        }
-                            break;
-                        default: {
-                            showSuggestions(scope.model);
-                        }
-                    }
-                }
-            }
 
             var keys = {
                 ESC: 27,
@@ -80,20 +37,94 @@ angular.module('Plugins').directive('intellisense', function () {
                 SPACE: 32
             };
 
-            function showSuggestions(txt) {
 
+
+            $("#intellisense-input").keydown(function ($event) {
+
+                if (intellisenseProvider) {
+
+                    switch ($event.keyCode) {
+
+
+                        case keys.RETURN: {
+
+                            if (scope.suggestions[scope.selectedSuggestionsIndex]) {
+                                var suggestion = scope.suggestions[scope.selectedSuggestionsIndex]['@Name'];
+                                scope.model = Intellisense.appendSuggestion(scope.model, suggestion);
+
+                                scope.isShowSuggestions = false;
+                            }
+
+                            return false;
+                        }
+                            break;
+
+                        case keys.UP: {
+                            if (scope.selectedSuggestionsIndex > 0)
+                                scope.$apply(function () {
+                                    scope.selectedSuggestionsIndex--;
+                                });
+
+                            return false;
+                        }
+                            break;
+
+                        case keys.DOWN: {
+
+                            if (scope.isShowSuggestions) {
+
+                                if (scope.selectedSuggestionsIndex < scope.suggestions.length - 1)
+                                    scope.$apply(function () {
+                                        scope.selectedSuggestionsIndex++;
+                                    });
+                            }
+                            else {
+                                scope.$apply(function () {
+                                    showSuggestions("");
+                                });
+                            }
+
+                            return false;
+                        }
+                            break;
+
+                    }
+                }
+            });
+
+
+            $("#intellisense-input").keyup(function ($event) {
+                if (intellisenseProvider) {
+                    switch ($event.keyCode) {
+
+                        case keys.UP: { return false; } break;
+                        case keys.RIGHT: { return false; } break;
+                        case keys.DOWN: { return false; } break;
+                        case keys.LEFT: { return false; } break;
+
+                        case keys.ESC: {
+                            scope.isShowSuggestions = false;
+                            return false;
+                        }
+                            break;
+                        default: {
+                            showSuggestions(scope.model);
+                        }
+                    }
+                }
+            });
+
+
+            function showSuggestions(txt) {
                 var txtLen = $("#intellisense-input").val().length;
                 $("#intellisense-suggestions").css('left', (5 /* 5 is the padding*/ + txtLen * 10) + "px");
 
-                scope.isShowSuggestions = true;
-                scope.suggestions = intellisenseProvider.getIntellisense(txt);
+                scope.$apply(function () {
+                    scope.suggestions = intellisenseProvider.getIntellisense(txt);
+                    scope.selectedSuggestionsIndex = 0;
+                    scope.isShowSuggestions = true;
+                });
             }
-
-            function setSelectedSuggestion(indx) {
-                scope.selectedSuggestionsIndex = indx;
-            }
-
-
         }
     }
 });
