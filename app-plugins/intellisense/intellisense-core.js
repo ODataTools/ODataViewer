@@ -119,7 +119,7 @@ Intellisense.prototype.getTypeIndex = function (setIndex) {
 Intellisense.prototype.getIntellisenseFromArr = function (str, arr) {
     var retVal = [];
     for (var i = 0; i < arr.length; i++) {
-        if (arr[i]['@Name'] && arr[i]['@Name'].toLowerCase().indexOf(str.toLowerCase()) == 0) {
+        if (arr[i]['@Name'] && arr[i]['@Name'].toLowerCase().indexOf(str.toLowerCase()) == 0 && arr[i]['@Name'] !== str) {
             retVal.push(arr[i]);
         }
     }
@@ -171,14 +171,14 @@ Intellisense.prototype.getResourceIntellisense = function (resource) {
     var parts = resource.split('/');
 
     if (parts.length == 1) {
-        return this.getIntellisenseFromArr(parts[0], this.sets);
-
         //quick solution to move to its own method when done
         for (var i = 0; i < this.sets.length; i++) {
             if (parts[0] == this.sets[i]['@Name']) {
                 return [{ '@Name': '/' }];
             }
         }
+
+        return this.getIntellisenseFromArr(parts[0], this.sets);
     }
 
     var setIndex = this.getIndexByName(this.sets, parts[0].split('(')[0]);
