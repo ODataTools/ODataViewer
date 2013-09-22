@@ -46,7 +46,6 @@ angular.module('Plugins').directive('intellisense', function () {
                     if (($event.ctrlKey && $event.keyCode == keys.RETURN) || $event.shiftKey && $event.keyCode == keys.RETURN) {
                         scope.onSubmit({ query: scope.model });
                         hideSuggestions();
-                        return false;
                     }
                     else {
                         switch ($event.keyCode) {
@@ -99,6 +98,8 @@ angular.module('Plugins').directive('intellisense', function () {
 
             $("#intellisense-input").keyup(function ($event) {
                 if (intellisenseProvider) {
+
+
                     switch ($event.keyCode) {
 
                         case keys.UP: { return false; } break;

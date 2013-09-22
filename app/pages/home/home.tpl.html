@@ -123,25 +123,19 @@
                             </label>
                         </div>
 
+                         <h1 class="pull-left">Data as {{dataViewType}}</h1>
+
+                        <div class="clearfix"></div>
+                        <hr />
+
+
                         <div json-view model="jsonData"></div>
 
-                        <!--<div data-table  model="jsonData"></div>-->
-
-                        <style>
-                            .gridStyle {
-                                border: 1px solid rgb(212,212,212);
-                                width: 400px;
-                                height: 300px;
-                            }
-                        </style>
-                        <div class="gridStyle" ng-grid="gridOptions"></div>
-
-
-                        {{$scope.gridOptions}}
+                        <div class="gridStyle" ng-show="(dataViewType == 'table')"  ng-grid="gridOptions"></div>
 
                         <!-- ng-show="(dataViewType == 'json')" 
                         
-                        ng-show="(dataViewType == 'table')"-->
+                        -->
 
 
                     </div>
