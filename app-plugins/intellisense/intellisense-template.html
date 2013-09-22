@@ -1,17 +1,21 @@
 ﻿<div style="position: relative">
 
     <input
-        type="text" id="intellisense-input" class="form-control" placeholder="query.." ng-model="model" ng-focus="showSuggestions('')" ng-blur="isShowSuggestions = false" />   <!--ng-keydown="onKeyDown($event);"-->
+        type="text" id="intellisense-input" class="form-control" placeholder="query.." ng-model="model" />
+    <!-- ng-blur="isShowSuggestions = false"-->
+    <!--ng-keydown="onKeyDown($event);" ng-focus="showSuggestions('')"-->
 
     <section id="intellisense-suggestions" ng-show="isShowSuggestions">
 
         <!-- | orderBy:'@Name'| filter:{type:'query'} |-->
 
-        <ul id="query-suggestions" class="list-unstyled" >
+        <ul id="query-suggestions" class="list-unstyled">
 
             <li class="no-suggestions" ng-show="(suggestions.length == 0)">- no suggestions -</li>
 
-            <li data-ng-repeat="suggestion in suggestions" ng-class="{'selected':($index == selectedSuggestionsIndex)}">
+            <li data-ng-repeat="suggestion in suggestions"
+                ng-class="{'selected':($index == selectedSuggestionsIndex)}"
+                ng-click="onSuggestionClick($index,suggestion)">
                 <i ng-class="{
                     'icon-gear': (suggestion.type == 'Entity'),
                     'icon-file-text': (suggestion.type == 'Property'),

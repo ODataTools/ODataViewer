@@ -44,15 +44,15 @@ angular.module('Plugins').directive('intellisense', function () {
                 if (intellisenseProvider) {
 
                     switch ($event.keyCode) {
-
-
                         case keys.RETURN: {
 
                             if (scope.suggestions[scope.selectedSuggestionsIndex]) {
-                                var suggestion = scope.suggestions[scope.selectedSuggestionsIndex]['@Name'];
-                                scope.model = Intellisense.appendSuggestion(scope.model, suggestion);
+                                var suggestionName = scope.suggestions[scope.selectedSuggestionsIndex]['@Name'];
 
-                                scope.isShowSuggestions = false;
+                                scope.$apply(function () {
+                                    scope.model = Intellisense.appendSuggestion(scope.model, suggestionName);
+                                });
+
                             }
 
                             return false;
@@ -79,9 +79,7 @@ angular.module('Plugins').directive('intellisense', function () {
                                     });
                             }
                             else {
-                                scope.$apply(function () {
-                                    showSuggestions("");
-                                });
+                                showSuggestions("");
                             }
 
                             return false;
@@ -91,7 +89,6 @@ angular.module('Plugins').directive('intellisense', function () {
                     }
                 }
             });
-
 
             $("#intellisense-input").keyup(function ($event) {
                 if (intellisenseProvider) {
@@ -103,7 +100,7 @@ angular.module('Plugins').directive('intellisense', function () {
                         case keys.LEFT: { return false; } break;
 
                         case keys.ESC: {
-                            scope.isShowSuggestions = false;
+                            hideSuggestions();
                             return false;
                         }
                             break;
@@ -124,6 +121,19 @@ angular.module('Plugins').directive('intellisense', function () {
                     scope.selectedSuggestionsIndex = 0;
                     scope.isShowSuggestions = true;
                 });
+            }
+
+            function hideSuggestions() {
+                scope.$apply(function () {
+                    scope.isShowSuggestions = false;
+                });
+            }
+
+
+            scope.onSuggestionClick = function (index, suggestion) {
+                scope.selectedSuggestionsIndex = index;
+                scope.model = Intellisense.appendSuggestion(scope.model, suggestion['@Name']);
+                $("#intellisense-input").focus();
             }
         }
     }

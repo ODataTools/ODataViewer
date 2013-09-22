@@ -26,14 +26,13 @@
 
                         <ul id="history-links" class="list-unstyled">
 
+                            <li ng-repeat="link in historyLinks" style="position:relative;">
 
+                                <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-
-                            <li ng-repeat="link in historyLinks">
                                 <!--ng-class="{'active':isSelectedLink(link)}"-->
-                                <div class="alert alert-warning alert-dismissable">
-                                    <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    <span ng-click="changeDataUrl(link);">{{link}}</span>
+                                <div class="alert alert-warning alert-dismissable" ng-click="changeDataUrl(link);">
+                                    <span>{{link}}</span>
                                 </div>
                             </li>
 
@@ -88,7 +87,7 @@
             <div class="row text-muted">
                 <div class="col-md-12">
                     <label><small>Current URL:</small></label>
-                    <a href="{{currentLink}}" target="_blank"><strong>{{currentLink}} &nbsp;</strong></a>
+                    <a href="{{currentLink}}" target="_blank"><strong>{{currentLink}}</strong></a> &nbsp;
                 </div>
             </div>
 
