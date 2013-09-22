@@ -230,7 +230,7 @@ Intellisense.prototype.getSelectIntellisense = function (query) {
 Intellisense.prototype.getNavs = function (arr) {
     var navs = [];
     for (var i = 0; i < arr.length; i++) {
-        if (arr[i].Type == 'NavigationProperty') {
+        if (arr[i].type == 'NavigationProperty') {
             navs.push(arr[i]);
         }
     }
