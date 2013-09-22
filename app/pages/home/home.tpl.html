@@ -94,13 +94,13 @@
 
             <form role="form" class="row" style="margin-bottom: 0px;">
 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-11">
                     <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 
-                <!--       <div class="form-group col-md-1">
+                       <div class="form-group col-md-1">
                     <button type="button" class="btn btn-block btn-primary" ng-click="loadData();">Go</button>
-                </div>-->
+                </div>
 
             </form>
 
@@ -123,10 +123,14 @@
                             </label>
                         </div>
 
-                        <div json-view ng-show="(dataViewType == 'json')" model="jsonData"></div>
+                        <div json-view  model="jsonData"></div>
 
-                        <div data-table ng-show="(dataViewType == 'table')" model="jsonData"></div>
+                        <div data-table  model="jsonData"></div>
 
+
+                       <!-- ng-show="(dataViewType == 'json')" 
+                        
+                        ng-show="(dataViewType == 'table')"-->
 
 
                     </div>

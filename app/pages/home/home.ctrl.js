@@ -54,9 +54,8 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         var url = $scope.currentLink + "/" + query;
 
         DataManager.getData(url).then(function (result) {
-            $scope.$apply(function () {
-                $scope.jsonData = result;
-            });
+            
+            $scope.jsonData = result.data;
         });
     }
 
