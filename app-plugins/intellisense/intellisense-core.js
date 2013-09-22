@@ -368,7 +368,8 @@ Intellisense.appendSuggestion = function (str, intel) {
     }
 
     //query path part
-    var lastQuery = parts[1].split('&').pop();
+    var pastQueries = parts[1].split('&');
+    var lastQuery = pastQueries.pop();
     var queryParts = lastQuery.split('=');
 
     if (queryParts.length == 1) {
@@ -386,10 +387,14 @@ Intellisense.appendSuggestion = function (str, intel) {
     }
 
     //query completion
+    //select and expand
+    var past = (pastQueries.length > 0) ? pastQueries.join('&') + '&' : '';
     if (lastQueryArr[0] == '$select' || lastQueryArr[0] == '$expand') {
-        return parts[0] + '?' + parts[1].join('&') + '&' + lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ',');
+        return parts[0] + '?' + past + lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ',');
     }
-    return parts[0] + '?' + parts[1].join('&') + '&' + lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ' ');
+
+    //the remaining queries
+    return parts[0] + '?' + past + lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ' ');
 }
 
 function addIntel(str, intel, sep) {
