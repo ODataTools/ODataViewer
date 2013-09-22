@@ -26,7 +26,7 @@
 
                         <ul id="history-links" class="list-unstyled">
 
-                            <li ng-repeat="link in historyLinks" style="position:relative;">
+                            <li ng-repeat="link in historyLinks" style="position: relative;">
 
                                 <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
@@ -98,7 +98,7 @@
                     <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 
-                       <div class="form-group col-md-1">
+                <div class="form-group col-md-1">
                     <button type="button" class="btn btn-block btn-primary" ng-click="loadData();">Go</button>
                 </div>
 
@@ -123,12 +123,23 @@
                             </label>
                         </div>
 
-                        <div json-view  model="jsonData"></div>
+                        <div json-view model="jsonData"></div>
 
-                        <div data-table  model="jsonData"></div>
+                        <!--<div data-table  model="jsonData"></div>-->
+
+                        <style>
+                            .gridStyle {
+                                border: 1px solid rgb(212,212,212);
+                                width: 400px;
+                                height: 300px;
+                            }
+                        </style>
+                        <div class="gridStyle" ng-grid="gridOptions"></div>
 
 
-                       <!-- ng-show="(dataViewType == 'json')" 
+                        {{$scope.gridOptions}}
+
+                        <!-- ng-show="(dataViewType == 'json')" 
                         
                         ng-show="(dataViewType == 'table')"-->
 
