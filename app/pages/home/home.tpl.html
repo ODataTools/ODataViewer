@@ -61,27 +61,20 @@
 
     <div id="content" class="snap-content">
 
+        <button id="show-settings-btn" ng-click="showSettings()"><i class="icon-gear"></i><span>Settings</span></button>
+        <button id="show-metadata-btn" ng-click="showMetaData()"><i class="icon-list-ul"></i><span>Meta-Data</span></button>
+
+
         <div class="container">
             <div class="row">
-
-                <div class="col-md-2">
-                    <button id="settings-btn" class="btn btn-default btn-block" ng-click="showSettings()"><i class="icon-gear"></i>Settings</button>
-                </div>
-
-                <div class="col-md-8">
+                <div class="col-md-8 col-md-offset-2">
 
                     <div id="site-logo">
                         <img class="img-responsive" src="/resources/logo.png" />
                     </div>
 
                 </div>
-                <div class="col-md-2">
-                    <button class="btn btn-default btn-block" ng-click="showMetaData()"><i class="icon-list-ul"></i>Meta-Data</button>
-                </div>
             </div>
-
-            <hr />
-
 
 
             <div class="row text-muted">
@@ -129,7 +122,7 @@
                         <hr />
 
                         <div ng-show="(dataViewType == 'json')">
-                            <div json-view model="jsonData" ></div>
+                            <div json-view model="jsonData"></div>
                         </div>
 
                         <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>

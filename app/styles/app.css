@@ -215,4 +215,33 @@
 #history-links {
   cursor: pointer;
 }
+#show-settings-btn,
+#show-metadata-btn {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  background: white;
+  border: 1px solid #cccccc;
+  top: 0px;
+  border-top: none;
+}
+#show-settings-btn i,
+#show-metadata-btn i {
+  display: block;
+  font-size: 200%;
+  color: rgba(0, 0, 0, 0.1);
+}
+#show-settings-btn span,
+#show-metadata-btn span {
+  color: rgba(128, 128, 128, 0.5);
+  font-size: 75%;
+}
+#show-settings-btn {
+  left: 0px;
+  border-left: none;
+}
+#show-metadata-btn {
+  right: 0px;
+  border-right: none;
+}
 
