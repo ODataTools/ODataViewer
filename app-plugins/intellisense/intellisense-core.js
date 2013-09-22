@@ -356,6 +356,10 @@ Intellisense.prototype.getIntellisense = function (str) {
 
 
 Intellisense.appendSuggestion = function (str, intel) {
+    if (intel == '/' || intel == '?') {
+        return str + intel;
+    }
+
     var parts = str.split('?');
 
     if (parts.length == 1) {
@@ -369,8 +373,10 @@ Intellisense.appendSuggestion = function (str, intel) {
         return parts[0] + '?' + addIntel(parts[1], intel, '&');
     }
 
-    lastQueryArr = lastQuery.split('=');
-
+    var lastQueryArr = lastQuery.split('=');
+    if (lastQueryArr[0] == '$select' || lastQueryArr[0] == '$expand') {
+        return parts[0] + '?' + parts[1].join('&') + '&' + lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ',');
+    }
     return parts[0] + '?' + parts[1].join('&') + '&' + lastQueryArr[0] + '=' + addIntel(lastQueryArr[1], intel, ' ');
 }
 
