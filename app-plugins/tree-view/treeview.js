@@ -1,6 +1,6 @@
 ﻿
 
-app.directive('treeView', function () {
+angular.module('Plugins').directive('treeView', function () {
     return {
         restrict: 'E',
         template: '<ul id="tree" class="filetree"></ul>',

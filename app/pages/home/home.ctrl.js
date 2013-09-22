@@ -5,7 +5,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.currentLink;
     $scope.metadata;
     $scope.jsonData;
-    $scope.dataViewType = 5;
+    $scope.dataViewType = 'json';
 
     $scope.isSelectedLink = function (link) {
         return (link === $scope.currentLink);
@@ -50,15 +50,19 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     }
 
     $scope.loadData = function () {
-        alert("load..");
         var query = $scope.intellisenseQuery || '';
         var url = $scope.currentLink + "/" + query;
 
         DataManager.getData(url).then(function (result) {
-
             $scope.$apply(function () {
                 $scope.jsonData = result;
             });
         });
     }
+
+
+    snapper = new Snap({
+        element: document.getElementById('content')
+    });
+
 });

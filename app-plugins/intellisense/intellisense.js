@@ -26,7 +26,6 @@ angular.module('Plugins').directive('intellisense', function () {
                 }
             });
 
-
             scope.onKeyDown = function ($event) {
                 if (intellisenseProvider) {
 
@@ -70,8 +69,6 @@ angular.module('Plugins').directive('intellisense', function () {
                 }
             }
 
-
-
             var keys = {
                 ESC: 27,
                 TAB: 9,
@@ -82,9 +79,6 @@ angular.module('Plugins').directive('intellisense', function () {
                 DOWN: 40,
                 SPACE: 32
             };
-
-
-
 
             function showSuggestions(txt) {
 
