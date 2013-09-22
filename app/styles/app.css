@@ -2,12 +2,11 @@
 #content {
   overflow-y: scroll;
   padding: 20px;
+  /*position:relative;*/
+
 }
 *,
 *.focus {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   outline: none !important;
 }
 #site-header {

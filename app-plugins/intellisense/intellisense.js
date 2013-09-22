@@ -68,6 +68,9 @@ angular.module('Plugins').directive('intellisense', function () {
                                 if (scope.selectedSuggestionsIndex > 0)
                                     scope.$apply(function () {
                                         scope.selectedSuggestionsIndex--;
+
+                                        if (scope.selectedSuggestionsIndex % 4 == 0)
+                                            $('#intellisense-suggestions').scrollTo((scope.selectedSuggestionsIndex - 5) * 35, { duration: 250 });
                                     });
 
                                 return false;
@@ -81,6 +84,9 @@ angular.module('Plugins').directive('intellisense', function () {
                                     if (scope.selectedSuggestionsIndex < scope.suggestions.length - 1)
                                         scope.$apply(function () {
                                             scope.selectedSuggestionsIndex++;
+
+                                            if (scope.selectedSuggestionsIndex % 4 == 0)
+                                                $('#intellisense-suggestions').scrollTo((scope.selectedSuggestionsIndex) * 35, { duration: 250 });
                                         });
                                 }
                                 else {

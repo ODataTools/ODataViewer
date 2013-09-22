@@ -65,7 +65,7 @@
             <div class="row">
 
                 <div class="col-md-2">
-                    <button class="btn btn-default btn-block" ng-click="showSettings()"><i class="icon-gear"></i>Settings</button>
+                    <button id="settings-btn" class="btn btn-default btn-block" ng-click="showSettings()"><i class="icon-gear"></i>Settings</button>
                 </div>
 
                 <div class="col-md-8">
@@ -123,15 +123,16 @@
                             </label>
                         </div>
 
-                         <h1 class="pull-left">Data as {{dataViewType}}</h1>
+                        <h1 class="pull-left">Data as {{dataViewType}}</h1>
 
                         <div class="clearfix"></div>
                         <hr />
 
+                        <div ng-show="(dataViewType == 'json')">
+                            <div json-view model="jsonData" ></div>
+                        </div>
 
-                        <div json-view model="jsonData"></div>
-
-                        <div class="gridStyle" ng-show="(dataViewType == 'table')"  ng-grid="gridOptions"></div>
+                        <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>
 
                         <!-- ng-show="(dataViewType == 'json')" 
                         
@@ -143,6 +144,7 @@
             </div>
         </div>
         <hr />
+
         <footer id="site-footer">
             Project maintained by ODataTools Team ● Visit us on <a href="http://hasanaboshally.github.io/OData/">Github</a> ● Follow us on <a href="http://twitter.com/OData/">Twitter</a> ●
             <br />

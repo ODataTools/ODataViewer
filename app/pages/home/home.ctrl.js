@@ -16,6 +16,9 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             snapper.close();
         else
             snapper.open('left');
+
+        
+
     }
 
     $scope.showMetaData = function () {
@@ -73,5 +76,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     snapper = new Snap({
         element: document.getElementById('content')
     });
+
 
 });
