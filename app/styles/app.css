@@ -218,30 +218,43 @@
 #show-settings-btn,
 #show-metadata-btn {
   position: absolute;
-  width: 75px;
-  height: 75px;
-  background: white;
+  height: 50px;
+  padding: 10px;
+  line-height: 35px;
+  color: #908c83;
+  background: rgba(0, 0, 0, 0.02);
   border: 1px solid #cccccc;
   top: 0px;
   border-top: none;
 }
 #show-settings-btn i,
 #show-metadata-btn i {
-  display: block;
-  font-size: 200%;
-  color: rgba(0, 0, 0, 0.1);
+  font-size: 150%;
+  margin-right: 5px;
+  display: inline-block;
 }
 #show-settings-btn span,
 #show-metadata-btn span {
-  color: rgba(128, 128, 128, 0.5);
-  font-size: 75%;
+  display: inline-block;
 }
 #show-settings-btn {
   left: 0px;
   border-left: none;
+  -webkit-border-radius: 0px 0px 4px 0px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px 0px 4px 0px;
+  -moz-background-clip: padding;
+  border-radius: 0px 0px 4px 0px;
+  background-clip: padding-box;
 }
 #show-metadata-btn {
   right: 0px;
   border-right: none;
+  -webkit-border-radius: 0px 0px 0px 4px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px 0px 0px 4px;
+  -moz-background-clip: padding;
+  border-radius: 0px 0px 0px 4px;
+  background-clip: padding-box;
 }
 

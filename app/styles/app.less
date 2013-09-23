@@ -253,37 +253,39 @@ body {
 
 #show-settings-btn, #show-metadata-btn {
     position: absolute;
-    @size: 75px;
-    width: @size;
-    height: @size;
+    height: 50px;
     //   .border-radius(100%);
     //top: 50%;
     // margin-top: -(@size/2);
-
+    padding: 10px;
+    line-height: 35px;
 
     i {
-        display: block;
-        font-size: 200%;
-        color: fade(black,10%);
+        //  display: block;
+        font-size: 150%;
+        margin-right: 5px;
+        display: inline-block;
     }
 
     span {
-        color: fade(gray,50%);
-        font-size:75%;
+        display: inline-block;
     }
 
-    background: white;
+    color: fade(#908C83,100%);
+    background:fade(black,2%);
     border: 1px solid #cccccc;
-        top: 0px;
+    top: 0px;
     border-top: none;
 }
 
 #show-settings-btn {
     left: 0px;
     border-left: none;
+    .border-radius(0px 0px 4px 0px);
 }
 
 #show-metadata-btn {
     right: 0px;
     border-right: none;
+    .border-radius( 0px 0px 0px 4px);
 }
