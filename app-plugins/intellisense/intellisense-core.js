@@ -181,7 +181,7 @@ Intellisense.prototype.getResourceIntellisense = function (resource) {
         //quick solution to move to its own method when done
         for (var i = 0; i < this.sets.length; i++) {
             if (parts[0] == this.sets[i]['@Name']) {
-                return [{ '@Name': '/' }];
+                return [{ '@Name': '/' }, { '@Name': '(' }, { '@Name': '?' }];
             }
         }
 
@@ -200,7 +200,7 @@ Intellisense.prototype.getResourceIntellisense = function (resource) {
     //quick solution to move to its own method when done
     for (var i = 0; i < this.lastProperties.length; i++) {
         if (parts[parts.length - 1] == this.lastProperties[i]['@Name']) {
-            return [{ '@Name': '/' }];
+            return [{ '@Name': '/' }, { '@Name': '(' }, { '@Name': '?' }];
         }
     }
 
@@ -273,7 +273,7 @@ Intellisense.prototype.getExpandIntellisense = function (query) {
  */
 Intellisense.prototype.getFilterIntellisense = function (query) {
     var last = query.split(/\s+/).pop();
-    return this.getIntellisenseFromArr(last, this.queryLogicalOps.concat(this.queryArithmaticOps, this.lastProperties));
+    return this.getIntellisenseFromArr(last, this.lastProperties.concat(this.queryArithmaticOps, this.queryLogicalOps));
 }
 
 /**
@@ -361,7 +361,7 @@ Intellisense.prototype.getIntellisense = function (str) {
 };
 
 Intellisense.appendSuggestion = function (str, intel) {
-    if (intel == '/' || intel == '?') {
+    if (intel == '/' || intel == '?'|| intel == '(') {
         return str + intel;
     }
 
