@@ -181,6 +181,9 @@ Intellisense.prototype.getResourceIntellisense = function (resource) {
         //quick solution to move to its own method when done
         for (var i = 0; i < this.sets.length; i++) {
             if (parts[0] == this.sets[i]['@Name']) {
+                var type = this.getTypeIndex(i);
+                var properties = this.getTypeProperties(type);
+                this.lastProperties = this.getTypeProperties(type);
                 return [{ '@Name': '/' }, { '@Name': '(' }, { '@Name': '?' }];
             }
         }
