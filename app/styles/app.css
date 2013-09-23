@@ -257,4 +257,12 @@
   border-radius: 0px 0px 0px 4px;
   background-clip: padding-box;
 }
+#data-load-spinner {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  z-index: 100;
+  font-size: 200%;
+  color: gray;
+}
 

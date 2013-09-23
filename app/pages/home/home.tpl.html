@@ -86,8 +86,8 @@
 
             <form role="form" class="row" style="margin-bottom: 0px;">
 
-                <div class="form-group col-md-11" style="position:relative;">
-                    <i class="icon-spinner icon-spin"></i>
+                <div class="form-group col-md-11" style="position: relative;">
+                    <i ng-show="isLoadingData" id="data-load-spinner" class="icon-spinner icon-spin"></i>
                     <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 

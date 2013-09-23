@@ -5,6 +5,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.currentLink;
     $scope.metadata;
     $scope.jsonData;
+    $scope.isLoadingData = false;
     $scope.dataViewType = 'json';
 
     $scope.isSelectedLink = function (link) {
@@ -51,10 +52,14 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     }
 
     $scope.loadData = function () {
+
+        $scope.isLoadingData = true;
+
         var query = $scope.intellisenseQuery || '';
         var url = $scope.currentLink + "/" + query;
 
         DataManager.getData(url).then(function (result) {
+            $scope.isLoadingData = false;
             $scope.jsonData = result.data;
         });
     }
