@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=The+Girl+Next+Door);
 #content {
   overflow-y: scroll;
-  padding: 20px;
+  padding-top: 20px;
   /*position:relative;*/
 
 }
@@ -62,9 +62,7 @@
 }
 /* Default demo styles */
 .snap-content {
-  background-image: url(/app/styles/images/wood_pattern.png);
-  background-image: url(/app/styles/images/retina_wood.png);
-  background-image: url(/app/styles/images/ricepaper_v3.png);
+  background-image: url(/app/styles/images/white_wall_hash.png);
   -webkit-box-shadow: 0px 5px 25px black;
   -moz-box-shadow: 0px 5px 25px black;
   box-shadow: 0px 5px 25px black;
@@ -79,42 +77,35 @@
 }
 #data-container {
   background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  margin: 26px auto 0;
   min-height: 300px;
-  padding: 24px;
+  padding: 20px;
   position: relative;
+  border: 1px solid #e5e5e5;
+  border-bottom: 2px solid #e5e5e5;
 }
-#data-container:before,
-#data-container:after {
-  content: "";
-  height: 98%;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
-}
-#data-container:before {
-  background: #fafafa;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  left: -5px;
-  top: 4px;
-  -webkit-transform: rotate(-1.2deg);
-  -moz-transform: rotate(-1.2deg);
-  -o-transform: rotate(-1.2deg);
-  -ms-transform: rotate(-1.2deg);
-  transform: rotate(-1.2deg);
-}
-#data-container:after {
-  background: #f6f6f6;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  right: -3px;
-  top: 1px;
-  -webkit-transform: rotate(1.4deg);
-  -moz-transform: rotate(1.4deg);
-  -o-transform: rotate(1.4deg);
-  -ms-transform: rotate(1.4deg);
-  transform: rotate(1.4deg);
-}
+/*#data-container:before, #data-container:after {
+        content: "";
+        height: 98%;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+
+    #data-container:before {
+        background: #fafafa;
+        box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        left: -5px;
+        top: 4px;
+        .transform(~"rotate(-1.2deg)");
+    }
+
+    #data-container:after {
+        background: #f6f6f6;
+        box-shadow: 0 0 3px rgba(0,0,0,0.2);
+        right: -3px;
+        top: 1px;
+        .transform(~"rotate(1.4deg)");
+    }*/
 #site-logo {
   display: block;
   margin: 0px auto;
@@ -153,6 +144,17 @@
   margin-top: 20px;
   color: #928D85;
   text-align: center;
+  background: #333333;
+  color: white;
+  border-top: 5px solid #222222;
+}
+#site-footer .sponsors {
+  text-align: center;
+}
+#site-footer .sponsors img {
+  margin: 5px;
+  max-height: 64px;
+  max-width: 96px;
 }
 .form-control {
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);;

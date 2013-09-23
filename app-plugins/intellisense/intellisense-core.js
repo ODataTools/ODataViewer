@@ -11,8 +11,6 @@ function Intellisense(metadata) {
         this.types = schema.EntityType;
     }
 
-
-
     this.initSetsType();
 
     this.lastProperties = [];

@@ -15,7 +15,7 @@ angular.module('Plugins').directive('treeView', function () {
 
                 for (var i in data) {
 
-                    
+
                     var li_Entity = $('<li class="folder">')
                         .append($('<span class="folder">').text(data[i]['@Name'])),
                         ul_Entity = $('<ul>');
@@ -91,22 +91,28 @@ angular.module('Plugins').directive('treeView', function () {
 
             scope.$watch('sourceData', function () {
 
-                var schema;
+                if (scope.sourceData) {
 
-                try {
-                    schema = scope.sourceData['edmx:Edmx']['edmx:DataServices']['Schema'];
+                    var schema = scope.sourceData['edmx:Edmx']['edmx:DataServices']['Schema'];
+
+                    var sets;
+                    var types;
+
+                    if (schema instanceof Array) {
+                        types = schema[0].EntityType;
+                        sets = schema[1].EntityContainer.EntitySet
+                    } else {
+                        sets = schema.EntityContainer.EntitySet
+                        types = schema.EntityType;
+                    }
+
+                    $('#tree').append($('<li>')
+                    .append($('<span class="folder">').text(schema['@Namespace']))
+                    .append($('<ul>').append($('<li>').append($('<span class="folder">').text('Entity Set'))
+                    .append(tree(types)))));
+
+                    $("#tree").treeview();
                 }
-                catch (e) {
-                    return;
-                }
-
-                $('#tree').append($('<li>')
-                .append($('<span class="folder">').text(schema['@Namespace']))
-                .append($('<ul>').append($('<li>').append($('<span class="folder">').text('Entity Set'))
-                .append(tree(schema['EntityType'])))));
-
-                $("#tree").treeview();
-
 
             });
 

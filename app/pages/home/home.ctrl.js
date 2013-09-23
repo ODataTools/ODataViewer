@@ -82,7 +82,8 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
     // open the setings pane after the page loads.
-    setTimeout(function () { $scope.showSettings(); }, 1000);
+    //setTimeout(function () { $scope.showSettings(); }, 1000);
 
-
+    if ($routeParams.url)
+        $scope.changeDataUrl($routeParams.url);
 });

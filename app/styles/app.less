@@ -3,7 +3,7 @@
 
 #content {
     overflow-y: scroll;
-    padding: 20px;
+    padding-top: 20px;
     /*position:relative;*/
 }
 
@@ -83,9 +83,12 @@ body {
 .snap-content {
     // background: white;
     // background-image: url(/app/styles/images/white_wall_hash.png);
-    background-image: url(/app/styles/images/wood_pattern.png);
-    background-image: url(/app/styles/images/retina_wood.png);
-    background-image: url(/app/styles/images/ricepaper_v3.png);
+   // background-image: url(/app/styles/images/wood_pattern.png);
+   // background-image: url(/app/styles/images/retina_wood.png);
+   // background-image: url(/app/styles/images/ricepaper_v3.png);
+
+   background-image: url(/app/styles/images/white_wall_hash.png);
+  
     .box-shadow(~"0px 5px 25px black");
 }
 
@@ -108,14 +111,18 @@ body {
 
 #data-container {
     background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    margin: 26px auto 0;
+  //  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    //margin: 26px auto 0;
     min-height: 300px;
-    padding: 24px;
+    padding: 20px;
     position: relative;
+
+    border:1px solid #e5e5e5;
+    border-bottom:2px solid #e5e5e5;
+
 }
 
-    #data-container:before, #data-container:after {
+    /*#data-container:before, #data-container:after {
         content: "";
         height: 98%;
         position: absolute;
@@ -137,7 +144,7 @@ body {
         right: -3px;
         top: 1px;
         .transform(~"rotate(1.4deg)");
-    }
+    }*/
 
 
 
@@ -185,6 +192,18 @@ body {
     margin-top: 20px;
     color: #928D85;
     text-align: center;
+    background:#333333;
+    color:white;
+    border-top:5px solid #222222;
+
+    .sponsors {
+        text-align:center;
+        img {
+            margin: 5px;
+            max-height:64px;
+            max-width:96px;
+        }
+    }
 }
 
 
@@ -272,7 +291,7 @@ body {
     }
 
     color: fade(#908C83,100%);
-    background:fade(black,2%);
+    background: fade(black,2%);
     border: 1px solid #cccccc;
     top: 0px;
     border-top: none;
@@ -292,10 +311,10 @@ body {
 
 
 #data-load-spinner {
-position: absolute;
-top: 5px;
-right: 20px;
-z-index: 100;
-font-size: 200%;
-color: gray;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    z-index: 100;
+    font-size: 200%;
+    color: gray;
 }

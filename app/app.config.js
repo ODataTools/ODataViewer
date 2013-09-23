@@ -2,7 +2,7 @@
 // Routing
 app.config(function ($routeProvider) {
     $routeProvider
-     .when('/:url', { controller: 'HomeCtrl', templateUrl: '/app/pages/home/home.tpl.html' })
+     .when('/', { controller: 'HomeCtrl', templateUrl: '/app/pages/home/home.tpl.html' })
      .when('/about', { controller: 'AboutCtrl', templateUrl: '/app/pages/about/about.tpl.html' })
      .otherwise({ redirectTo: '/' });
 });

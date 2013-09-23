@@ -149,7 +149,14 @@
     var jsonFormatter = new JSONFormatter;
     // Covert, and catch exceptions on failure
     if( Object.prototype.toString.call(jsonObj) !== '[object Object]' ) {
-      jsonObj = JSON.parse(jsonObj);
+
+
+        try{
+            jsonObj = JSON.parse(jsonObj);
+        }
+        catch (e) {
+            jsonObj = [];
+        }
     }
     var outputDoc = jsonFormatter.jsonToHTML(jsonObj);
 

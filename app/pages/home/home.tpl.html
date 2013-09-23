@@ -49,6 +49,9 @@
                         <header>
                             <h2>Meta-Data</h2>
                         </header>
+
+                        <hr />
+                        <a data-toggle="modal" href="#metadata-graph-modal" class="btn btn-primary btn-lg">View Meta-Data Graph</a>
                         <hr />
 
                         <tree-view source-data="metadata"></tree-view>
@@ -70,11 +73,14 @@
                 <div class="col-md-8 col-md-offset-2">
 
                     <div id="site-logo">
-                        <img class="img-responsive" src="/resources/logo.png" />
+                        <img class="img-responsive" src="resources/app-logo.png" />
                     </div>
 
                 </div>
             </div>
+
+            <hr />
+
 
             <div class="row text-muted">
                 <div class="col-md-12">
@@ -116,7 +122,7 @@
                             </label>
                         </div>
 
-                        <h1 class="pull-left">Data as {{dataViewType}}</h1>
+                        <h4 class="pull-left">Data as {{dataViewType}}</h4>
 
                         <div class="clearfix"></div>
                         <hr />
@@ -127,6 +133,9 @@
 
                         <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>
 
+
+
+
                         <!-- ng-show="(dataViewType == 'json')" 
                         
                         -->
@@ -136,16 +145,29 @@
                 </div>
             </div>
         </div>
-        <hr />
+
+
+
 
         <footer id="site-footer">
-            Project maintained by ODataTools Team ● Visit us on <a href="http://hasanaboshally.github.io/OData/">Github</a> ● Follow us on <a href="http://twitter.com/OData/">Twitter</a> ●
+
+            <div class="sponsors">
+                <a href="http://e4d.co.il">
+                    <img src="resources/e4d-logo.png" /></a>
+                <a href="http://tsofen.org">
+                    <img src="resources/tsofen-logo.png" /></a>
+            </div>
+
+            <div>
+                Project maintained by ODataTools Team ● Visit us on <a href="http://hasanaboshally.github.io/OData/">Github</a> ● Follow us on <a href="http://twitter.com/OData/">Twitter</a> ●
             <br />
-            Visit our <a href="http://odataGallery.com">OData Providers Gallery </a>
-            <br />
-            2013 ©
+                Visit our <a href="http://odataGallery.com">OData Providers Gallery </a>
+                <br />
+                2013 ©
             <!--NO-->
-            All rights reserved
+                All rights reserved
+            </div>
+
         </footer>
 
 
@@ -153,9 +175,25 @@
 </div>
 
 
-<!--<script script-runner>
-    snapper = new Snap({
-        element: document.getElementById('content')
-    });
-</script>-->
+<!-- Modal -->
+<div class="modal fade" id="metadata-graph-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>-->
+            <div class="modal-body">
+                <div graph-view source-data="metadata"></div>
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Export</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
