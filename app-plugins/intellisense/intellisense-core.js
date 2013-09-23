@@ -139,19 +139,26 @@ Intellisense.prototype.getExpectedType = function (parts, properties) {
     var type = -1;
     var setIndex = -1;
     var set = '';
-    var selecting = false;
+    var selecting = (parts[0].split('(').length > 1) ? true : false;
+    if (!selecting) {
+        return [];
+    }
     propertyIndex = -1;
+
 
     for (var i = 1; i < parts.length - 1; i++) {
         propertyIndex = this.getIndexByName(retVal, parts[i].split('(')[0]);
         if (propertyIndex < 0) {
             return [];
         }
-        selecting = (parts[i - 1].split('(').length > 1) ? true : false;
-        if (selecting && retVal[propertyIndex].Type == 'NavigationProperty') {
-            set = retVal[propertyIndex]['@ToRole'];
-            setIndex = this.getIndexByName(this.sets, set);
-            type = this.getTypeIndex(setIndex);
+        //selecting = (parts[i - 1].split('(').length > 1) ? true : false;
+        //if (selecting && retVal[propertyIndex].type == 'NavigationProperty') {
+        selecting = (parts[i].split('(').length > 1) ? true : false;
+        if (selecting) {
+            //set = retVal[propertyIndex]['@ToRole'];
+            //setIndex = this.getIndexByName(this.sets, set);
+            //type = this.getTypeIndex(setIndex);
+            type = this.getIndexByName(this.types, parts[i].split('(')[0]);
             retVal = this.getTypeProperties(type);
         } else {
             return [];
@@ -352,8 +359,6 @@ Intellisense.prototype.getIntellisense = function (str) {
     }
     return [];
 };
-
-
 
 Intellisense.appendSuggestion = function (str, intel) {
     if (intel == '/' || intel == '?') {
