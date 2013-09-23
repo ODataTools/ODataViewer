@@ -38,6 +38,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
         MetaDataManager.setFromUrl(url).then(function () {
             $scope.metadata = MetaDataManager.getJSON();
+            $scope.jsonData = [];
             snapper.close();
             $('#intellisense-input').focus();
         });
