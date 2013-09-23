@@ -9,8 +9,6 @@
                         </header>
                         <hr />
 
-
-
                         <form role="form">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="url" ng-model="currentLink" />
@@ -92,14 +90,14 @@
 
             <form role="form" class="row" style="margin-bottom: 0px;">
 
-                <div class="form-group col-md-11" style="position: relative;">
+                <div class="form-group col-md-12" style="position: relative;">
                     <i ng-show="isLoadingData" id="data-load-spinner" class="icon-spinner icon-spin"></i>
                     <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 
-                <div class="form-group col-md-1">
+             <!--   <div class="form-group col-md-1">
                     <button type="button" class="btn btn-block btn-primary" ng-click="loadData();">Go</button>
-                </div>
+                </div>-->
 
             </form>
 

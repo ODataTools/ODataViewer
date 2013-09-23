@@ -5,7 +5,7 @@ angular.module('Plugins').directive('intellisense', function () {
 
     return {
         restrict: 'E',
-        templateUrl: '/app-plugins/intellisense/intellisense-template.html',
+        templateUrl: 'app-plugins/intellisense/intellisense-template.html',
         scope: {
             model: '=',
             metadata: '=',
