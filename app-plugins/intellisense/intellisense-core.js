@@ -14,8 +14,8 @@ function Intellisense(metadata) {
     this.initSetsType();
 
     this.lastProperties = [];
-    this.queryOps = [{ '@Name': '$filter' }, { '@Name': '$expand' }, { '@Name': '$select' }, { '@Name': '$orderby' },
-					 { '@Name': '$top' }, { '@Name': '$skip' }, { '@Name': '$skiptoken' }, { '@Name': '$inlinecount' }, { '@Name': '$format' }];
+    this.queryOps = [{ '@Name': '$filter=' }, { '@Name': '$expand=' }, { '@Name': '$select=' }, { '@Name': '$orderby=' },
+					 { '@Name': '$top=' }, { '@Name': '$skip=' }, { '@Name': '$skiptoken=' }, { '@Name': '$inlinecount=' }, { '@Name': '$format=' }];
     this.queryLogicalOps = [{ '@Name': 'eq' }, { '@Name': 'ne' }, { '@Name': 'gt' }, { '@Name': 'ge' }, { '@Name': 'lt' },
 							{ '@Name': 'le' }, { '@Name': 'and' }, { '@Name': 'or' }, { '@Name': 'not' }];
     this.queryArithmaticOps = [{ '@Name': 'add' }, { '@Name': 'sub' }, { '@Name': 'mul' }, { '@Name': 'div' }, { '@Name': 'mod' }];
