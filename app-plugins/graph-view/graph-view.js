@@ -1,7 +1,7 @@
 ﻿angular.module('Plugins').directive('graphView', function () {
     return {
         restrict: 'A',
-        template: '<div id="sample"><div id="myDiagram" style="background-color: white; border: solid 1px black; width: 100%; height: 700px"></div></div>',
+        template: '<div id="myDiagram" style="width: 100%; min-height: 700px"></div>',
         replace: true,
         scope: {
             sourceData: '='
@@ -169,9 +169,11 @@
                     initialContentAlignment: go.Spot.Center,
                     allowDelete: false,
                     allowCopy: false,
-                    allowZoom: true,
-                  //  autoScale: go.Diagram.UniformToFill,
-                    layout: $(go.ForceDirectedLayout)
+                    //  allowZoom: true,
+                    //  autoScale: go.Diagram.UniformToFill,
+                    initialAutoScale: go.Diagram.UniformToFill,
+                      layout: $(go.ForceDirectedLayout),
+                      "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom
                 });
 
             // define several shared Brushes

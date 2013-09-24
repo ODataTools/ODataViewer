@@ -19,7 +19,20 @@
                             </div>
 
                         </form>
+                        <hr />
 
+                        <div class="btn-group pull-right" data-toggle="options">
+                            <label class="btn btn-default">
+                                <input ng-model="dataViewType" value="json" type="radio" name="options">
+                                JSON
+                            </label>
+                            <label class="btn btn-default">
+                                <input ng-model="dataViewType" value="table" type="radio" name="options">
+                                Table
+                            </label>
+                        </div>
+
+                        <div class="clearfix"></div>
                         <hr />
 
                         <ul id="history-links" class="list-unstyled">
@@ -62,24 +75,23 @@
 
     <div id="content" class="snap-content">
 
-        <button id="show-settings-btn" ng-click="showSettings()"><i class="icon-gear"></i><span>Settings</span></button>
-        <button id="show-metadata-btn" ng-click="showMetaData()"><i class="icon-list-ul"></i><span>Meta-Data</span></button>
+        <header id="site-header" class="row">
 
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-
-                    <div id="site-logo">
-                        <img class="img-responsive" src="resources/app-logo.png" />
-                    </div>
-
-                </div>
+            <div class="col-md-3">
+                <button ng-click="showSettings()" class="btn btn-primary pull-left">Settings</button>
             </div>
 
-            <hr />
+            <div class="col-md-6">
+                <img id="site-logo" class="img-responsive" src="resources/app-logo.png" />
+            </div>
 
+            <div class="col-md-3">
+                <button ng-click="showMetaData()" class="btn btn-primary pull-right">Metadata</button>
+            </div>
 
+        </header>
+
+        <div class="container">
             <div class="row text-muted">
                 <div class="col-md-12">
                     <label><small>Current URL:</small></label>
@@ -88,16 +100,32 @@
             </div>
 
 
-            <form role="form" class="row" style="margin-bottom: 0px;">
 
-                <div class="form-group col-md-12" style="position: relative;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="data-container">
+                        <div graph-view source-data="metadata"></div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <form role="form" class="row" style="margin-bottom: 0px; margin-top:20px;">
+
+                <div class="form-group col-md-9 " style="position: relative;">
                     <i ng-show="isLoadingData" id="data-load-spinner" class="icon-spinner icon-spin"></i>
                     <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 
-             <!--   <div class="form-group col-md-1">
-                    <button type="button" class="btn btn-block btn-primary" ng-click="loadData();">Go</button>
-                </div>-->
+                <div class="col-md-2">
+                    <button type="button" class="form-control operation-btn btn-success" ng-click="loadData();"><i class="icon-paste"></i>Show Data</button>
+                </div>
+
+                <div class="col-md-1">
+                    <a href="{{currentLink}}/{{intellisenseQuery}}" target="_blank">
+                        <button type="button" class="form-control operation-btn btn-default " ng-click="loadData();"><i class="icon-external-link"></i>Open</button></a>
+                </div>
 
             </form>
 
@@ -106,24 +134,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div id="data-container">
-
-
-                        <div class="btn-group pull-right" data-toggle="options">
-                            <label class="btn btn-default">
-                                <input ng-model="dataViewType" value="json" type="radio" name="options">
-                                JSON
-                            </label>
-                            <label class="btn btn-default">
-                                <input ng-model="dataViewType" value="table" type="radio" name="options">
-                                Table
-                            </label>
-                        </div>
-
-                        <h4 class="pull-left">Data as {{dataViewType}}</h4>
-
-                        <div class="clearfix"></div>
-                        <hr />
+                    <div class="data-container">
 
                         <div ng-show="(dataViewType == 'json')">
                             <div json-view model="jsonData"></div>
@@ -131,21 +142,16 @@
 
                         <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>
 
-
-
-
-                        <!-- ng-show="(dataViewType == 'json')" 
-                        
-                        -->
-
-
                     </div>
                 </div>
             </div>
+
+
+
         </div>
 
 
-
+        <hr />
 
         <footer id="site-footer">
 
@@ -157,13 +163,10 @@
             </div>
 
             <div>
-                Project maintained by ODataTools Team ● Visit us on <a href="http://hasanaboshally.github.io/OData/">Github</a> ● Follow us on <a href="http://twitter.com/OData/">Twitter</a> ●
-            <br />
-                Visit our <a href="http://odataGallery.com">OData Providers Gallery </a>
-                <br />
-                2013 ©
-            <!--NO-->
-                All rights reserved
+                Project maintained by ODataTools Team ● <a href="http://hasanaboshally.github.io/OData/">Github</a> ● <a href="http://twitter.com/OData/">Twitter</a>
+                | 
+                2013 ©  All rights reserved
+              
             </div>
 
         </footer>
@@ -173,14 +176,10 @@
 </div>
 
 
-<!-- Modal -->
+<!--
 <div class="modal fade" id="metadata-graph-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <!--            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>-->
             <div class="modal-body">
                 <div graph-view source-data="metadata"></div>
 
@@ -190,8 +189,6 @@
                 <button type="button" class="btn btn-primary">Export</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+</div>-->
+
