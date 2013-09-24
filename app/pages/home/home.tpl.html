@@ -62,8 +62,6 @@
                         </header>
 
                         <hr />
-                        <a data-toggle="modal" href="#metadata-graph-modal" class="btn btn-primary btn-lg">View Meta-Data Graph</a>
-                        <hr />
 
                         <tree-view source-data="metadata"></tree-view>
 
@@ -78,7 +76,7 @@
         <header id="site-header" class="row">
 
             <div class="col-md-3">
-                <button ng-click="showSettings()" class="btn btn-primary pull-left">Settings</button>
+                <button ng-click="showSettings()" class="btn btn-default pull-left">Settings</button>
             </div>
 
             <div class="col-md-6">
@@ -86,7 +84,7 @@
             </div>
 
             <div class="col-md-3">
-                <button ng-click="showMetaData()" class="btn btn-primary pull-right">Metadata</button>
+                <button ng-click="showMetaData()" class="btn btn-default pull-right">Metadata</button>
             </div>
 
         </header>
@@ -95,7 +93,7 @@
             <div class="row text-muted">
                 <div class="col-md-12">
                     <label><small>Current URL:</small></label>
-                    <a href="{{currentLink}}" target="_blank"><strong>{{currentLink}}</strong></a> &nbsp;
+                    <a href="{{currentLink}}/{{intellisenseQuery}}" target="_blank"><strong>{{currentLink}}/{{intellisenseQuery}}</strong></a> &nbsp;
                 </div>
             </div>
 
@@ -104,18 +102,13 @@
 
             <form role="form" class="row" style="margin-bottom: 0px; margin-top: 20px;">
 
-                <div class="form-group col-md-9 " style="position: relative;">
+                <div class="form-group col-md-10 " style="position: relative;">
                     <i ng-show="isLoadingData" id="data-load-spinner" class="icon-spinner icon-spin"></i>
                     <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 
                 <div class="col-md-2">
                     <button type="button" class="form-control operation-btn btn-success" ng-click="loadData();"><i class="icon-paste"></i>Show Data</button>
-                </div>
-
-                <div class="col-md-1">
-                    <a href="{{currentLink}}/{{intellisenseQuery}}" target="_blank">
-                        <button type="button" class="form-control operation-btn btn-default " ng-click="loadData();"><i class="icon-external-link"></i>Open</button></a>
                 </div>
 
             </form>
@@ -143,12 +136,10 @@
                 </div>
             </div>
 
-            <hr />
 
         </div>
 
 
-        <hr />
 
         <footer id="site-footer">
 
