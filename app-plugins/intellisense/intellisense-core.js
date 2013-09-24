@@ -221,11 +221,11 @@ Intellisense.prototype.getSelectIntellisense = function (query) {
     var expected = -1;
 
     if (parts.length == 1) {
-        return this.getIntellisenseFromArr(parts[0], this.lastProperties);
+        return this.getIntellisenseFromArr(parts[0], this.lastProperties.concat([{ '@Name': '&' }]));
     }
 
     expected = this.getExpectedType(parts, this.lastProperties);
-    return this.getIntellisenseFromArr(parts[parts.length - 1], expected);
+    return this.getIntellisenseFromArr(parts[parts.length - 1], expected.concat([{ '@Name': '&' }]));
 };
 
 /**
@@ -258,11 +258,11 @@ Intellisense.prototype.getExpandIntellisense = function (query) {
     var expected = -1;
 
     if (parts.length == 1) {
-        return this.getIntellisenseFromArr(parts[0], this.getNavs(this.lastProperties));
+        return this.getIntellisenseFromArr(parts[0], this.getNavs(this.lastProperties.concat([{'@Name':'&'}])));
     }
 
     expected = this.getExpectedType(parts, this.lastProperties);
-    return this.getIntellisenseFromArr(parts[parts.length - 1], this.getNavs(expected));
+    return this.getIntellisenseFromArr(parts[parts.length - 1], this.getNavs(expected).concat([{'@Name':'&'}]));
 };
 
 /**
@@ -274,7 +274,7 @@ Intellisense.prototype.getExpandIntellisense = function (query) {
  */
 Intellisense.prototype.getFilterIntellisense = function (query) {
     var last = query.split(/\s+/).pop();
-    return this.getIntellisenseFromArr(last, this.lastProperties.concat(this.queryArithmaticOps, this.queryLogicalOps));
+    return this.getIntellisenseFromArr(last, this.lastProperties.concat(this.queryArithmaticOps, this.queryLogicalOps, [{'@Name':'&'}]));
 }
 
 /**
@@ -291,7 +291,7 @@ Intellisense.prototype.getOrderbyIntellisense = function (query) {
         return this.getIntellisenseFromArr(parts[0], this.lastProperties);
     }
     if (parts.length == 2) {
-        return this.getIntellisenseFromArr(parts[1], this.orderbyOps);
+        return this.getIntellisenseFromArr(parts[1], this.orderbyOps.concat([{ '@Name': '&' }]));
     }
     return [];
 };
@@ -317,11 +317,11 @@ Intellisense.prototype.getQueryOpIntellisense = function (queryOp, query) {
         case "$top":
         case "$skip":
         case "$skiptoken":
-            return [];
+            return [{ '@Name': '&' }];
         case "$inlinecount":
-            return this.getIntellisenseFromArr(query, this.inlinecountOps);
+            return this.getIntellisenseFromArr(query, this.inlinecountOps.concat([{ '@Name': '&' }]));
         case "$format":
-            return this.getIntellisenseFromArr(query, this.formatOps);
+            return this.getIntellisenseFromArr(query, this.formatOps.concat([{ '@Name': '&' }]));
         default:
             return [];
     }
