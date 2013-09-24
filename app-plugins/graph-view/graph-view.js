@@ -1,7 +1,7 @@
 ﻿angular.module('Plugins').directive('graphView', function () {
     return {
         restrict: 'A',
-        template: '<div id="myDiagram" style="width: 100%; min-height: 700px"></div>',
+        template: '<div id="myDiagram" style="width: 100%; min-height: 500px"></div>',
         replace: true,
         scope: {
             sourceData: '='
