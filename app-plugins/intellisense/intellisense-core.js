@@ -137,7 +137,7 @@ Intellisense.prototype.getExpectedType = function (parts, properties) {
     var type = -1;
     var setIndex = -1;
     var set = '';
-    var selecting = (parts[0].split('(').length > 1) ? true : false;
+    var selecting = (parts[0].split('(').length > 1);
     if (!selecting) {
         return [];
     }
@@ -151,7 +151,7 @@ Intellisense.prototype.getExpectedType = function (parts, properties) {
         }
         //selecting = (parts[i - 1].split('(').length > 1) ? true : false;
         //if (selecting && retVal[propertyIndex].type == 'NavigationProperty') {
-        selecting = (parts[i].split('(').length > 1) ? true : false;
+        selecting = (parts[i].split('(').length > 1);
         if (selecting) {
             //set = retVal[propertyIndex]['@ToRole'];
             //setIndex = this.getIndexByName(this.sets, set);
@@ -182,7 +182,11 @@ Intellisense.prototype.getResourceIntellisense = function (resource) {
                 var type = this.getTypeIndex(i);
                 var properties = this.getTypeProperties(type);
                 this.lastProperties = this.getTypeProperties(type);
-                return [{ '@Name': '/' }, { '@Name': '(' }, { '@Name': '?' }];
+                var selected = (parts[0].split('(').length > 1);
+                if (selected) {
+                    return [{ '@Name': '/' }, { '@Name': ')' }, { '@Name': '?' }];
+                }
+                return [{ '@Name': '(' }, { '@Name': '?' }];
             }
         }
 
