@@ -221,11 +221,11 @@ Intellisense.prototype.getSelectIntellisense = function (query) {
     var expected = -1;
 
     if (parts.length == 1) {
-        return this.getIntellisenseFromArr(parts[0], this.lastProperties.concat([{ '@Name': '&' }]));
+        return this.getIntellisenseFromArr(parts[0], this.lastProperties.concat([{ '@Name': '&' }, {'@Name': ','}]));
     }
 
     expected = this.getExpectedType(parts, this.lastProperties);
-    return this.getIntellisenseFromArr(parts[parts.length - 1], expected.concat([{ '@Name': '&' }]));
+    return this.getIntellisenseFromArr(parts[parts.length - 1], expected.concat([{ '@Name': '&' }, { '@Name': ',' }]));
 };
 
 /**
@@ -258,11 +258,11 @@ Intellisense.prototype.getExpandIntellisense = function (query) {
     var expected = -1;
 
     if (parts.length == 1) {
-        return this.getIntellisenseFromArr(parts[0], this.getNavs(this.lastProperties.concat([{'@Name':'&'}])));
+        return this.getIntellisenseFromArr(parts[0], this.getNavs(this.lastProperties.concat([{ '@Name': '&' }, { '@Name': ',' }])));
     }
 
     expected = this.getExpectedType(parts, this.lastProperties);
-    return this.getIntellisenseFromArr(parts[parts.length - 1], this.getNavs(expected).concat([{'@Name':'&'}]));
+    return this.getIntellisenseFromArr(parts[parts.length - 1], this.getNavs(expected).concat([{ '@Name': '&' }, { '@Name': ',' }]));
 };
 
 /**
