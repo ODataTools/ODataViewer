@@ -25,6 +25,11 @@
   background: ;
   background: #4679bd;
 }
+#site-header .navigation-btn {
+  background: #3966a1;
+  border-color: #305587;
+  color: white;
+}
 #site-header #site-logo {
   height: 20px;
   display: block;
@@ -201,36 +206,48 @@ button i {
 }
 #settings section {
   margin-bottom: 20px;
-  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
-  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
-  box-shadow: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
-  color: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  color: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
   background: white;
 }
 #settings section header {
   background: #f9f9f9;
-  padding: 10px;
+  padding: 5px;
   border-bottom: 1px dashed #e5e5e5;
   margin-bottom: 10px;
 }
 #settings section header i {
   color: #e5e5e5;
-  font-size: 200%;
+  font-size: 150%;
 }
 #settings section header h3 {
   display: inline-block;
   margin: 0px;
-  margin-left: 10px;
-  color: gray;
+  margin-left: 5px;
+  color: rgba(128, 128, 128, 0.5);
+  font-size: 100%;
+  font-weight: bold;
 }
 #settings section > div {
   padding: 20px;
 }
 ul#history-links button.close {
-  padding: 15px;
   display: none;
+  color: #D74B4B;
+  -webkit-opacity: 0.75;
+  -moz-opacity: 0.75;
+  opacity: 0.75;
 }
 ul#history-links li:hover button.close {
   display: block;
+}
+ul#history-links li {
+  border-bottom: 1px solid #e5e5e5;
+  border-left: 5px solid #e5e5e5;
+  background: #f9f9f9;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 

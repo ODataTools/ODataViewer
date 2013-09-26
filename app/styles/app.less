@@ -33,6 +33,9 @@ body {
 
 
     .navigation-btn {
+        background: darken(@headerBackColor,8%);
+        border-color: darken(@headerBackColor,15%);
+        color: white;
     }
 
     #site-logo {
@@ -240,25 +243,27 @@ button i {
 
     section {
         margin-bottom: 20px;
-        .box-shadow(~"0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1)");
+        .box-shadow(~"0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1)");
         background: white;
 
         header {
             background: #f9f9f9;
-            padding: 10px;
+            padding: 5px;
             border-bottom: 1px dashed #e5e5e5;
             margin-bottom: 10px;
 
             i {
                 color: #e5e5e5;
-                font-size: 200%;
+                font-size: 150%;
             }
 
             h3 {
                 display: inline-block;
                 margin: 0px;
-                margin-left: 10px;
-                color: gray;
+                margin-left:5px;
+                color: fade(gray,50%);
+                font-size:100%;
+                font-weight:bold;
             }
         }
 
@@ -270,11 +275,21 @@ button i {
 
 ul#history-links {
     button.close {
-        padding: 15px;
+        // padding: 15px;
         display: none;
+        color:#D74B4B;
+        .opacity(0.75);
     }
 
     li:hover button.close {
         display: block;
+    }
+
+    li {
+        border-bottom:1px solid #e5e5e5;
+        border-left:5px solid #e5e5e5;
+        background:#f9f9f9;
+        padding:5px;
+        margin-bottom:10px;
     }
 }

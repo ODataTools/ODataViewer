@@ -13,13 +13,25 @@
                                 <h3>URL</h3>
                             </header>
                             <div>
-                                <form role="form">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="url" ng-model="currentLink" />
+                                <form role="form" class="container" style="margin-bottom: 0px">
+
+                                    <div class="form-group row">
+
+                                        <div class="col-md-9">
+
+                                            <input type="text" class="form-control" placeholder="url" ng-model="currentLink" />
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <button type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
+
+                                        </div>
+
+
+
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
                                     </div>
 
                                 </form>
@@ -29,7 +41,7 @@
                         <section>
 
                             <header>
-                                <i class="icon-link"></i>
+                                <i class="icon-columns"></i>
                                 <h3>Data View Type</h3>
                             </header>
                             <div>
@@ -48,7 +60,7 @@
 
                         <section>
                             <header>
-                                <i class="icon-link"></i>
+                                <i class="icon-list"></i>
                                 <h3>History</h3>
                             </header>
                             <div>
@@ -59,7 +71,7 @@
                                         <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
                                         <!--ng-class="{'active':isSelectedLink(link)}"-->
-                                        <div class="alert alert-warning alert-dismissable" ng-click="changeDataUrl(link);">
+                                        <div class="alert-dismissable" ng-click="changeDataUrl(link);">
                                             <span>{{link}}</span>
                                         </div>
                                     </li>
@@ -98,7 +110,7 @@
         <header id="site-header" class="row">
 
             <div class="col-md-3">
-                <button ng-click="showSettings()" class="btn btn-default pull-left">Settings</button>
+                <button ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>
             </div>
 
             <div class="col-md-6">
@@ -106,7 +118,7 @@
             </div>
 
             <div class="col-md-3">
-                <button ng-show="metadata" ng-click="showMetaData()" class="btn btn-default pull-right">Metadata</button>
+                <button ng-show="metadata" ng-click="showMetaData()" class="btn navigation-btn pull-right">Metadata</button>
             </div>
 
         </header>
