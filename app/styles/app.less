@@ -250,8 +250,7 @@ button i {
             background: #f9f9f9;
             padding: 5px;
             border-bottom: 1px dashed #e5e5e5;
-            margin-bottom: 10px;
-
+            //  margin-bottom: 10px;
             i {
                 color: #e5e5e5;
                 font-size: 150%;
@@ -260,10 +259,10 @@ button i {
             h3 {
                 display: inline-block;
                 margin: 0px;
-                margin-left:5px;
+                margin-left: 5px;
                 color: fade(gray,50%);
-                font-size:100%;
-                font-weight:bold;
+                font-size: 100%;
+                font-weight: bold;
             }
         }
 
@@ -277,8 +276,12 @@ ul#history-links {
     button.close {
         // padding: 15px;
         display: none;
-        color:#D74B4B;
+        color: gray;
         .opacity(0.75);
+
+        &:hover {
+             color: #D74B4B;
+        }
     }
 
     li:hover button.close {
@@ -286,10 +289,14 @@ ul#history-links {
     }
 
     li {
-        border-bottom:1px solid #e5e5e5;
-        border-left:5px solid #e5e5e5;
-        background:#f9f9f9;
-        padding:5px;
-        margin-bottom:10px;
+        border-left: 3px solid #e5e5e5;
+        background: #f9f9f9;
+        padding: 5px;
+        color: gray;
+
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
     }
 }

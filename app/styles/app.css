@@ -216,7 +216,6 @@ button i {
   background: #f9f9f9;
   padding: 5px;
   border-bottom: 1px dashed #e5e5e5;
-  margin-bottom: 10px;
 }
 #settings section header i {
   color: #e5e5e5;
@@ -235,19 +234,24 @@ button i {
 }
 ul#history-links button.close {
   display: none;
-  color: #D74B4B;
+  color: gray;
   -webkit-opacity: 0.75;
   -moz-opacity: 0.75;
   opacity: 0.75;
+}
+ul#history-links button.close:hover {
+  color: #D74B4B;
 }
 ul#history-links li:hover button.close {
   display: block;
 }
 ul#history-links li {
-  border-bottom: 1px solid #e5e5e5;
-  border-left: 5px solid #e5e5e5;
+  border-left: 3px solid #e5e5e5;
   background: #f9f9f9;
   padding: 5px;
+  color: gray;
+}
+ul#history-links li:not(:last-child) {
   margin-bottom: 10px;
 }
 
