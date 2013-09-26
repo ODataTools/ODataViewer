@@ -23,7 +23,17 @@ body {
     //  background:#222222;
     //.gradient(~"linear-gradient(0deg, #222222 0%,#333333 100%)");
     //.gradient(~"linear-gradient(0deg, #345888 0%,#3276b1 100%)");
-    background: #4679bd;
+    background:;
+
+
+
+    @headerBackColor: #4679bd;
+
+    background: @headerBackColor;
+
+
+    .navigation-btn {
+    }
 
     #site-logo {
         height: 20px;
@@ -226,8 +236,7 @@ button i {
 }
 
 #settings {
-
-    padding-top:20px;
+    padding-top: 20px;
 
     section {
         margin-bottom: 20px;
@@ -249,13 +258,12 @@ button i {
                 display: inline-block;
                 margin: 0px;
                 margin-left: 10px;
-                color:gray;
+                color: gray;
             }
         }
 
         >div {
-        padding: 20px;
-        
+            padding: 20px;
         }
     }
 }
