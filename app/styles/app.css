@@ -195,4 +195,41 @@
 button i {
   margin-right: 5px;
 }
+#settings {
+  padding-top: 20px;
+}
+#settings section {
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  color: 0 1px 5px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  background: white;
+}
+#settings section header {
+  background: #f9f9f9;
+  padding: 10px;
+  border-bottom: 1px dashed #e5e5e5;
+  margin-bottom: 10px;
+}
+#settings section header i {
+  color: #e5e5e5;
+  font-size: 200%;
+}
+#settings section header h3 {
+  display: inline-block;
+  margin: 0px;
+  margin-left: 10px;
+  color: gray;
+}
+#settings section > div {
+  padding: 20px;
+}
+ul#history-links button.close {
+  padding: 15px;
+  display: none;
+}
+ul#history-links li:hover button.close {
+  display: block;
+}
 

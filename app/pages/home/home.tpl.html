@@ -3,51 +3,73 @@
         <div class="snap-drawer snap-drawer-left">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <header>
-                            <h2>Settings</h2>
-                        </header>
-                        <hr />
+                    <div class="col-md-12" id="settings">
 
-                        <form role="form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="url" ng-model="currentLink" />
+
+                        <section>
+
+                            <header>
+                                <i class="icon-link"></i>
+                                <h3>URL</h3>
+                            </header>
+                            <div>
+                                <form role="form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="url" ng-model="currentLink" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
+                                    </div>
+
+                                </form>
                             </div>
+                        </section>
 
-                            <div class="form-group">
-                                <button type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
-                            </div>
+                        <section>
 
-                        </form>
-                        <hr />
-
-                        <div class="btn-group pull-right" data-toggle="options">
-                            <label class="btn btn-default">
-                                <input ng-model="dataViewType" value="json" type="radio" name="options">
-                                JSON
-                            </label>
-                            <label class="btn btn-default">
-                                <input ng-model="dataViewType" value="table" type="radio" name="options">
-                                Table
-                            </label>
-                        </div>
-
-                        <div class="clearfix"></div>
-                        <hr />
-
-                        <ul id="history-links" class="list-unstyled">
-
-                            <li ng-repeat="link in historyLinks" style="position: relative;">
-
-                                <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                <!--ng-class="{'active':isSelectedLink(link)}"-->
-                                <div class="alert alert-warning alert-dismissable" ng-click="changeDataUrl(link);">
-                                    <span>{{link}}</span>
+                            <header>
+                                <i class="icon-link"></i>
+                                <h3>Data View Type</h3>
+                            </header>
+                            <div>
+                                <div class="btn-group" data-toggle="options">
+                                    <label class="btn btn-default">
+                                        <input ng-model="dataViewType" value="json" type="radio" name="options">
+                                        JSON
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input ng-model="dataViewType" value="table" type="radio" name="options">
+                                        Table
+                                    </label>
                                 </div>
-                            </li>
+                            </div>
+                        </section>
 
-                        </ul>
+                        <section>
+                            <header>
+                                <i class="icon-link"></i>
+                                <h3>History</h3>
+                            </header>
+                            <div>
+                                <ul id="history-links" class="list-unstyled">
+
+                                    <li ng-repeat="link in historyLinks" style="position: relative;">
+
+                                        <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                        <!--ng-class="{'active':isSelectedLink(link)}"-->
+                                        <div class="alert alert-warning alert-dismissable" ng-click="changeDataUrl(link);">
+                                            <span>{{link}}</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </section>
+
+
+
                     </div>
                 </div>
             </div>
@@ -57,11 +79,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <header>
+                        <!--                        <header>
                             <h2>Meta-Data</h2>
                         </header>
 
-                        <hr />
+                        <hr />-->
 
                         <tree-view source-data="metadata"></tree-view>
 
@@ -84,7 +106,7 @@
             </div>
 
             <div class="col-md-3">
-                <button ng-click="showMetaData()" class="btn btn-default pull-right">Metadata</button>
+                <button ng-show="metadata" ng-click="showMetaData()" class="btn btn-default pull-right">Metadata</button>
             </div>
 
         </header>
@@ -144,10 +166,14 @@
         <footer id="site-footer">
 
             <div class="sponsors">
+                <a href="http://odatatools.org">
+                    <img style="max-width: 120px;" src="resources/odatatools-logo.png" /></a>
                 <a href="http://e4d.co.il">
                     <img src="resources/e4d-logo.png" /></a>
                 <a href="http://tsofen.org">
                     <img src="resources/tsofen-logo.png" /></a>
+
+
             </div>
 
             <div>
