@@ -68,13 +68,32 @@
                                 <h3>History</h3>
                             </header>
                             <div>
-                                <ul id="history-links" class="list-unstyled">
+                                <ul class="list-unstyled odata-links">
 
                                     <li ng-repeat="link in historyLinks" style="position: relative;">
 
                                         <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
                                         <!--ng-class="{'active':isSelectedLink(link)}"-->
+                                        <div class="alert-dismissable" ng-click="changeDataUrl(link);">
+                                            <span>{{link}}</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </section>
+
+                                                <section>
+                            <header>
+                                <i class="icon-rocket"></i>
+                                <h3>Sample URLs</h3>
+                            </header>
+                            <div>
+                                <ul class="list-unstyled odata-links">
+
+                                    <li ng-repeat="link in sampleLinks" style="position: relative;">
+
                                         <div class="alert-dismissable" ng-click="changeDataUrl(link);">
                                             <span>{{link}}</span>
                                         </div>

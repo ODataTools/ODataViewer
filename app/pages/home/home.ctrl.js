@@ -2,6 +2,11 @@
 app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager, MetaDataManager, DataManager) {
 
     $scope.historyLinks = HistoryManager.getLinks();
+    $scope.sampleLinks = [
+        "http://services.odata.org/V3/OData/OData.svc",
+        "http://services.odata.org/V3/Northwind/Northwind.svc"
+    ];
+
     $scope.currentLink;
     $scope.metadata;
     $scope.jsonData;
@@ -73,7 +78,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
     $scope.gridOptions = {
-        data: 'jsonData.value',
+        data: '[{ age: 4, name: "Hasan" }, { age: 3, name: "Omar" }]',
         multiSelect: false
     };
 

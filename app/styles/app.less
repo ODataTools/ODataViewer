@@ -172,12 +172,6 @@ body {
         border: none;
     }
 
-
-#history-links {
-    cursor: pointer;
-}
-
-
 #show-settings-btn, #show-metadata-btn {
     position: absolute;
     height: 50px;
@@ -274,7 +268,10 @@ button i {
     }
 }
 
-ul#history-links {
+ul.odata-links {
+
+
+
     button.close {
         // padding: 15px;
         display: none;
@@ -296,6 +293,7 @@ ul#history-links {
         padding: 5px;
         color: gray;
 
+        cursor:pointer;
 
         &:not(:last-child) {
             margin-bottom: 10px;

@@ -142,9 +142,6 @@
   color: 0 1px 5px rgba(0, 0, 0, 0.2);;
   border: none;
 }
-#history-links {
-  cursor: pointer;
-}
 #show-settings-btn,
 #show-metadata-btn {
   position: absolute;
@@ -234,26 +231,27 @@ button i {
 #settings section > div {
   padding: 20px;
 }
-ul#history-links button.close {
+ul.odata-links button.close {
   display: none;
   color: gray;
   -webkit-opacity: 0.75;
   -moz-opacity: 0.75;
   opacity: 0.75;
 }
-ul#history-links button.close:hover {
+ul.odata-links button.close:hover {
   color: #D74B4B;
 }
-ul#history-links li:hover button.close {
+ul.odata-links li:hover button.close {
   display: block;
 }
-ul#history-links li {
+ul.odata-links li {
   border-left: 3px solid #e5e5e5;
   background: #f9f9f9;
   padding: 5px;
   color: gray;
+  cursor: pointer;
 }
-ul#history-links li:not(:last-child) {
+ul.odata-links li:not(:last-child) {
   margin-bottom: 10px;
 }
 #modal-about section header {
