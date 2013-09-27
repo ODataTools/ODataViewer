@@ -27,7 +27,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     }
 
     $scope.changeDataUrl = function (url) {
-
         $scope.currentLink = url;
 
         // Remove the trailing slash (if exists) from the url. 
@@ -43,7 +42,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             snapper.close();
             $('#intellisense-input').focus();
         });
-
 
     }
 
@@ -74,6 +72,10 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         multiSelect: false
     };
 
+
+    if ($routeParams.url)
+        $scope.changeDataUrl($routeParams.url);
+
     //****************************************************************************************************
 
     snapper = new Snap({
@@ -84,6 +86,40 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     // open the setings pane after the page loads.
     //setTimeout(function () { $scope.showSettings(); }, 1000);
 
-    if ($routeParams.url)
-        $scope.changeDataUrl($routeParams.url);
+    var tour = new Tour({
+    });
+
+    tour.addSteps([
+        {
+            element: "#settings-btn", // string (jQuery selector) - html element next to which the step popover should be shown
+            title: "The Settings Button", // string - title of the popover
+            content: "Click here to open the settings panel.", // string - content of the popover
+            onNext: function () { $scope.showSettings(); }
+        },
+        {
+            element: "#new-url-input", // string (jQuery selector) - html element next to which the step popover should be shown
+            title: "New OData Provider URL", // string - title of the popover
+            content: "Enter the url here..", // string - content of the popover
+        }
+        ,
+        {
+            element: "#new-url-btn", // string (jQuery selector) - html element next to which the step popover should be shown
+            content: "And then click the GO button", // string - content of the popover
+            onNext: function () {
+                $('#new-url-btn').trigger('click');
+            }
+        }
+        ,
+        {
+            element: "#intellisense-input", // string (jQuery selector) - html element next to which the step popover should be shown
+            title: "The query input", // string - title of the popover
+            content: "Start writing queries for the URL you provided. <br/>You can press the <i class='icon-arrow-down'></i> key to show the intellisense suggestions.", // string - content of the popover
+            placement: "bottom"
+        }
+    ]);
+
+
+
+    tour.start(true);
+
 });

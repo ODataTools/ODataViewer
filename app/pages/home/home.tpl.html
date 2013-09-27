@@ -19,11 +19,11 @@
 
                                         <div class="col-md-9">
 
-                                            <input type="text" class="form-control" placeholder="url" ng-model="currentLink" />
+                                            <input id="new-url-input" type="text" class="form-control" placeholder="url" ng-model="currentLink" />
                                         </div>
 
                                         <div class="col-md-3">
-                                            <button type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
+                                            <button id="new-url-btn" type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
 
                                         </div>
 
@@ -114,7 +114,7 @@
         <header id="site-header" class="row">
 
             <div class="col-md-3">
-                <button ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>
+                <button id="settings-btn" ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>
             </div>
 
             <div class="col-md-6">
@@ -135,9 +135,6 @@
                 </div>
             </div>
 
-
-
-
             <form role="form" class="row" style="margin-bottom: 0px; margin-top: 20px;">
 
                 <div class="form-group col-md-10 " style="position: relative;">
@@ -152,7 +149,7 @@
             </form>
 
 
-            <div class="row">
+            <div class="row" ng-show="jsonData">
                 <div class="col-md-12">
                     <div class="data-container">
 
