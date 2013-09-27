@@ -84,7 +84,7 @@
                             </div>
                         </section>
 
-                                                <section>
+                        <section>
                             <header>
                                 <i class="icon-rocket"></i>
                                 <h3>Sample URLs</h3>
@@ -242,18 +242,15 @@
                 <hr />
 
                 <p>
-                    
-                  The Open Data Protocol (OData) is a Web protocol for querying and updating data that provides a way to unlock your data and free it from silos that exist in applications today.OData does this by applying and building upon Web technologies such as HTTP, Atom Publishing Protocol (AtomPub) and JSON to provide access to information from a variety of applications, services, and stores.
+                    The Open Data Protocol (OData) is a Web protocol for querying and updating data that provides a way to unlock your data and free it from silos that exist in applications today.OData does this by applying and building upon Web technologies such as HTTP, Atom Publishing Protocol (AtomPub) and JSON to provide access to information from a variety of applications, services, and stores.
 
                 </p>
 
 
                 <hr />
 
-                <section class="mentors">
-<!--                    <header>
-                        Mentors
-                    </header>-->
+                <!--                <section class="mentors">
+
                     <ul class="members-list list-unstyled container">
                         <li class="row">
 
@@ -266,34 +263,33 @@
                             <div class="col-md-9">
                                 <label>Eyal Vardi (Mentor)</label>
                                 <br />
-                                <p>Eyal has a <a href="http://dataservicestool.codeplex.com/">windows based application for viewing OData</a>, and he came up with the idea of making a web-based application for helping developers using OData.
-                                    <br />
-                                    Eyal mentored the project and helped the team with several technical issues.
+                                <p>
+                                    Eyal has a <a href="http://dataservicestool.codeplex.com/">windows based application for viewing OData</a>, and he came up with the idea of making a web-based application for helping developers using OData.<br />Eyal mentored the project and helped the team with several technical issues.
                                 </p>
                             </div>
                         </li>
                     </ul>
-                </section>
+                </section>-->
 
                 <section class="team">
-<!--                    <header>
+                    <!--                    <header>
                         Team
                     </header>-->
-                    <ul class="members-list list-unstyled container">
-                        <li class="row">
 
+                    <ul class="members-list list-unstyled container">
+                        <li ng-repeat="member in team" class="row">
 
                             <div class="col-md-3">
-                                <img class="img-responsive" src="resources/photos/hasan.jpg" />
-                                <a class="linked-in" href="http://www.linkedin.com/profile/view?id=183930974" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>
+                                <img class="img-responsive" ng-src="{{member.photoUrl}}" />
+                                <a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>
 
                             </div>
                             <div class="col-md-9">
-                                <label>Hasan Abo-Sahlly</label>
+                                <label>{{member.name}}</label>
+
                                 <p>
-                                        Hasan led the team developing the project.
-                                    <br />
-                                    He worked on the application's structure, the user interface, and the integration of the addons into the tool. </p>
+                                   {{ member.description}}
+                                </p>
                             </div>
 
 
