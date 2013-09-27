@@ -118,10 +118,10 @@
   box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.15),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   color: 0px -1px 5px rgba(0, 0, 0, 0.15),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
-#site-footer .sponsors {
+.sponsors {
   text-align: center;
 }
-#site-footer .sponsors img {
+.sponsors img {
   margin: 5px;
   max-height: 64px;
   max-width: 96px;
@@ -255,5 +255,48 @@ ul#history-links li {
 }
 ul#history-links li:not(:last-child) {
   margin-bottom: 10px;
+}
+#modal-about section header {
+  background: #f9f9f9;
+  padding: 10px;
+  border-bottom: 1px dashed #e5e5e5;
+  color: rgba(128, 128, 128, 0.5);
+  font-size: 150%;
+  font-weight: bold;
+}
+#modal-about .members-list {
+  padding: 0px;
+}
+#modal-about .members-list li {
+  -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  color: 0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
+  background: white;
+  margin: 10px 0px;
+  padding: 5px;
+}
+#modal-about .members-list li .linked-in {
+  text-decoration: none !important;
+  font-size: 75%;
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  color: gray;
+}
+#modal-about .members-list li .linked-in i {
+  font-size: 150%;
+  margin-right: 5px;
+  color: #1D87BE;
+}
+#modal-about .members-list img {
+  -webkit-border-radius: 100%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 100%;
+  -moz-background-clip: padding;
+  border-radius: 100%;
+  background-clip: padding-box;
+  padding: 5px;
+  border: 1px solid #e5e5e5;
 }
 

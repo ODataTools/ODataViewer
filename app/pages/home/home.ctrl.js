@@ -8,6 +8,11 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.isLoadingData = false;
     $scope.dataViewType = 'json';
 
+
+
+   // $scope.team = [];
+
+
     $scope.isSelectedLink = function (link) {
         return (link === $scope.currentLink);
     }

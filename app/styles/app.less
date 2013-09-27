@@ -36,8 +36,8 @@ body {
         background: darken(@headerBackColor,8%);
         border-color: darken(@headerBackColor,15%);
         color: white;
-        margin-left:5px;
-        margin-right:5px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
     #site-logo {
@@ -147,18 +147,18 @@ body {
     margin: 0px;
     margin-top: 50px;
     .box-shadow(~"0px -1px 5px rgba(0, 0, 0, 0.15),inset 0 -1px 0 rgba(0, 0, 0, 0.1)");
-
-    .sponsors {
-        text-align: center;
-
-        img {
-            margin: 5px;
-            max-height: 64px;
-            max-width: 96px;
-        }
-    }
 }
 
+
+.sponsors {
+    text-align: center;
+
+    img {
+        margin: 5px;
+        max-height: 64px;
+        max-width: 96px;
+    }
+}
 
 .form-control {
     .box-shadow(~"0 1px 5px rgba(0, 0, 0, 0.1);");
@@ -282,7 +282,7 @@ ul#history-links {
         .opacity(0.75);
 
         &:hover {
-             color: #D74B4B;
+            color: #D74B4B;
         }
     }
 
@@ -299,6 +299,58 @@ ul#history-links {
 
         &:not(:last-child) {
             margin-bottom: 10px;
+        }
+    }
+}
+
+
+#modal-about {
+
+    section {
+        // margin-bottom: 20px;
+        header {
+            background: #f9f9f9;
+            padding: 10px;
+            border-bottom: 1px dashed #e5e5e5;
+            //  margin-bottom: 10px;
+            color: fade(gray,50%);
+            font-size: 150%;
+            font-weight: bold;
+        }
+    }
+
+    .members-list {
+        padding: 0px;
+
+        li {
+            .box-shadow(~"0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1)");
+            background: white;
+            margin: 10px 0px;
+            padding: 5px;
+
+
+
+            .linked-in {
+
+                text-decoration:none !important;
+                i {
+                    font-size: 150%;
+                    margin-right:5px;
+                    color:#1D87BE;
+                }
+
+                font-size:75%;
+                display:block;
+                text-align:center;
+                margin-top:5px;
+                color:gray;
+            }
+        }
+
+        img {
+            .border-radius(100%);
+            padding: 5px;
+            border: 1px solid #e5e5e5;
         }
     }
 }
