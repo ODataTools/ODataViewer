@@ -38,7 +38,6 @@ angular.module('Plugins').directive('intellisense', function () {
             };
 
 
-
             $("#intellisense-input").keydown(function ($event) {
 
                 if (intellisenseProvider) {
@@ -103,9 +102,12 @@ angular.module('Plugins').directive('intellisense', function () {
             });
 
             $("#intellisense-input").keyup(function ($event) {
+
+                if (($event.ctrlKey && $event.keyCode == keys.RETURN) || $event.shiftKey && $event.keyCode == keys.RETURN) {
+                    hideSuggestions();
+                }
+                else
                 if (intellisenseProvider) {
-
-
                     switch ($event.keyCode) {
 
                         case keys.UP: { return false; } break;

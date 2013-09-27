@@ -29,6 +29,8 @@
   background: #3966a1;
   border-color: #305587;
   color: white;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 #site-header #site-logo {
   height: 20px;

@@ -73,6 +73,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     };
 
 
+
     if ($routeParams.url)
         $scope.changeDataUrl($routeParams.url);
 
@@ -119,7 +120,11 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     ]);
 
 
+    $scope.showHelp = function () {
+        tour.goto(0);
+        tour.start(true);
+    }
 
-    tour.start(true);
 
+    tour.start();
 });

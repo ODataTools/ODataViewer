@@ -26,7 +26,7 @@
           name: "tour",
           container: "body",
           keyboard: true,
-          storage: null,//window.localStorage,
+          storage: window.localStorage,
           debug: false,
           backdrop: false,
           redirect: true,

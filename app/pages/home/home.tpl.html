@@ -113,16 +113,21 @@
 
         <header id="site-header" class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button id="settings-btn" ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-2">
                 <img id="site-logo" class="img-responsive" src="resources/app-logo.png" />
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
+                <a data-toggle="modal" href="#modal-about" class="btn navigation-btn pull-right">About</a>
+
+                <button ng-click="showHelp()" class="btn navigation-btn pull-right">Help</button>
+
                 <button ng-show="metadata" ng-click="showMetaData()" class="btn navigation-btn pull-right">Metadata</button>
+
             </div>
 
         </header>
@@ -203,19 +208,31 @@
 </div>
 
 
-<!--
-<div class="modal fade" id="metadata-graph-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="modal-about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <!--        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>-->
             <div class="modal-body">
-                <div graph-view source-data="metadata"></div>
+                <img style="display:block; width:50%; margin:20px auto; " src="resources/odatatools-logo.png" />
+
+
+                <hr />
+
+                <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Export</button>
-            </div>
+            <!--        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>-->
+
         </div>
+        <!-- /.modal-content -->
     </div>
-</div>-->
-
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
