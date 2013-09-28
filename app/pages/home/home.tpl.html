@@ -45,12 +45,22 @@
                                 <h3>Data View Type</h3>
                             </header>
                             <div>
+
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="dataViewType" value="xml" type="radio" name="options">
+                                        XML
+                                    </label>
+                                </div>
+
                                 <div class="radio">
                                     <label>
                                         <input ng-model="dataViewType" value="json" type="radio" name="options">
                                         JSON
                                     </label>
                                 </div>
+
+
 
                                 <div class="radio">
                                     <label>
@@ -174,7 +184,7 @@
             </form>
 
 
-            <div class="row" ng-show="jsonData">
+            <div class="row" ng-show="($scope.jsonData || $scope.xmlData != '')">
                 <div class="col-md-12">
                     <div class="data-container">
 
@@ -184,6 +194,12 @@
 
                         <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>
 
+
+                        <section ng-show="(dataViewType == 'xml')">
+
+                            <div xml-view model="xmlData"></div>
+
+                        </section>
                     </div>
                 </div>
             </div>
@@ -288,7 +304,7 @@
                                 <label>{{member.name}}</label>
 
                                 <p>
-                                   {{ member.description}}
+                                    {{ member.description}}
                                 </p>
                             </div>
 

@@ -1,6 +1,20 @@
 ﻿
 app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager, MetaDataManager, DataManager) {
 
+    $scope.$safeApply = function (fn) {
+        var phase = this.$root.$$phase;
+        if (phase == '$apply' || phase == '$digest') {
+            if (fn && (typeof (fn) === 'function')) {
+                fn();
+            }
+        } else {
+            this.$apply(fn);
+        }
+    };
+
+
+    //*****************************************************
+
     $scope.historyLinks = HistoryManager.getLinks();
     $scope.sampleLinks = [
         "http://services.odata.org/V3/OData/OData.svc",
@@ -10,10 +24,9 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.currentLink;
     $scope.metadata;
     $scope.jsonData;
+    $scope.xmlData;
     $scope.isLoadingData = false;
     $scope.dataViewType = 'json';
-
-
 
     $scope.team = [
         {
@@ -99,9 +112,19 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         var query = $scope.intellisenseQuery || '';
         var url = $scope.currentLink + "/" + query;
 
-        DataManager.getData(url).then(function (result) {
-            $scope.isLoadingData = false;
-            $scope.jsonData = result.data;
+        var isXml = $scope.dataViewType == "xml";
+
+        DataManager.getData(url, isXml).then(function (result) {
+
+            $scope.$safeApply(function () {
+
+                $scope.isLoadingData = false;
+
+                if (isXml)
+                    $scope.xmlData = result.data;
+                else
+                    $scope.jsonData = result.data;
+            });
         });
     }
 
@@ -111,7 +134,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
     $scope.gridOptions = {
-        data: '[{ age: 4, name: "Hasan" }, { age: 3, name: "Omar" }]',
+        data: $scope.jsonData,
         multiSelect: false
     };
 

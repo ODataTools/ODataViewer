@@ -40,12 +40,14 @@
         return arrayjson;
     }
 
-    function getData(url) {
+    function getData(url, isXml) {
 
-        if (url.indexOf("?") == -1)
-            url += "?$format=json";
-        else
-            url += "&$format=json";
+        if (!isXml) {
+            if (url.indexOf("?") == -1)
+                url += "?$format=json";
+            else
+                url += "&$format=json";
+        }
 
         return $http.get(url, { headers: { 'Accept': "*/*" } });
     }
