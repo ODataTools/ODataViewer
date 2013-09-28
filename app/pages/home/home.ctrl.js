@@ -25,7 +25,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.metadata;
     $scope.jsonData;
     $scope.xmlData;
-    $scope.isLoadingData = false;
     $scope.dataViewType = 'json';
 
     $scope.team = [
@@ -107,8 +106,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
     $scope.loadData = function () {
 
-        $scope.isLoadingData = true;
-
         var query = $scope.intellisenseQuery || '';
         var url = $scope.currentLink + "/" + query;
 
@@ -117,8 +114,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         DataManager.getData(url, isXml).then(function (result) {
 
             $scope.$safeApply(function () {
-
-                $scope.isLoadingData = false;
 
                 if (isXml)
                     $scope.xmlData = result.data;

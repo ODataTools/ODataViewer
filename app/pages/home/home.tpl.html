@@ -173,7 +173,6 @@
             <form role="form" class="row" style="margin-bottom: 0px; margin-top: 20px;">
 
                 <div class="form-group col-md-10 " style="position: relative;">
-                    <i ng-show="isLoadingData" id="data-load-spinner" class="icon-spinner icon-spin"></i>
                     <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
                 </div>
 
@@ -184,7 +183,7 @@
             </form>
 
 
-            <div class="row" ng-show="($scope.jsonData || $scope.xmlData != '')">
+            <div class="row" ng-show="($scope.jsonData || ($scope.xmlData && $scope.xmlData != ''))">
                 <div class="col-md-12">
                     <div class="data-container">
 

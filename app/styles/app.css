@@ -184,14 +184,6 @@
   border-radius: 0px 0px 0px 4px;
   background-clip: padding-box;
 }
-#data-load-spinner {
-  position: absolute;
-  top: 5px;
-  right: 20px;
-  z-index: 100;
-  font-size: 200%;
-  color: gray;
-}
 .operation-btn {
   height: 40px;
   padding: 0px;
@@ -296,5 +288,30 @@ ul.odata-links li:not(:last-child) {
   background-clip: padding-box;
   padding: 5px;
   border: 1px solid #e5e5e5;
+}
+#loading-spinner {
+  position: fixed;
+  z-index: 100;
+  bottom: -1px;
+  right: -1px;
+  text-align: center;
+}
+#loading-spinner div {
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px 0px 0px 0px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 5px 0px 0px 0px;
+  -moz-background-clip: padding;
+  border-radius: 5px 0px 0px 0px;
+  background-clip: padding-box;
+  background: white;
+  background: #4679bd;
+  padding: 10px;
+}
+#loading-spinner i {
+  font-size: 32px;
+  color: gray;
+  color: rgba(70, 121, 189, 0.25);
+  color: white;
 }
 

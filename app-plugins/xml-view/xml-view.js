@@ -13,10 +13,14 @@ angular.module('Plugins').directive('xmlView', function () {
 
             scope.$watch('model', function () {
 
+                $(element).html('');
+
                 if (scope.model) {
-                   var tmp = new XMLTree({
+                    var tmp = new XMLTree({
                         xml: scope.model,
-                        container: '#xmlviewer'
+                        container: '#xmlviewer',
+                        noURLTracking: false,
+                        startExpanded: true
                     });
                 }
             });

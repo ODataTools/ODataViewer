@@ -12,6 +12,9 @@ angular.module('Plugins').directive('jsonView', function () {
             $(element).attr('id', "jsonviewer");
 
             scope.$watch('model', function () {
+
+                $(element).html('');
+
                 if (scope.model)
                     $("#jsonviewer").JSONView(scope.model);
             });
