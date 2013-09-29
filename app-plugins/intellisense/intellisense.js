@@ -42,6 +42,7 @@ angular.module('Plugins').directive('intellisense', function () {
                 }
             });
 
+
             var keys = {
                 ESC: 27,
                 TAB: 9,

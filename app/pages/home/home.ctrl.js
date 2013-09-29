@@ -27,6 +27,8 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.xmlData;
     $scope.dataViewType = 'json';
 
+  //  $scope.isShowIntellisenseSuggestions = true;
+
     $scope.team = [
         {
             //<a href='http://dataservicestool.codeplex.com/'></a>
@@ -124,6 +126,9 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     }
 
     $scope.onIntellisenseSubmit = function (query) {
+        //  isShowIntellisenseSuggestions = false;
+
+      //  $('#intellisense-suggestions').css('display',"none");  -- not working
         $scope.loadData();
     }
 
