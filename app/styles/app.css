@@ -280,6 +280,9 @@ ul.odata-links li:not(:last-child) {
   margin: 10px 0px;
   padding: 5px;
 }
+#modal-about .member .icon-linkedin-sign {
+  margin-right: 5px;
+}
 #modal-about .member .linked-in {
   text-decoration: none !important;
   font-size: 75%;
@@ -302,6 +305,8 @@ ul.odata-links li:not(:last-child) {
   background-clip: padding-box;
   padding: 5px;
   border: 1px solid #e5e5e5;
+  width: 122px;
+  height: 122px;
 }
 #modal-about .mentors .member {
   padding: 10px;

@@ -14,27 +14,31 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
     //*****************************************************
-
-    $scope.historyLinks = HistoryManager.getLinks();
-    $scope.sampleLinks = [
-        "http://services.odata.org/V3/OData/OData.svc",
-        "http://services.odata.org/V3/Northwind/Northwind.svc"
-    ];
-
     $scope.currentLink;
     $scope.metadata;
     $scope.jsonData;
     $scope.xmlData;
     $scope.dataViewType = 'json';
-
     //  $scope.isShowIntellisenseSuggestions = true;
+    $scope.historyLinks = HistoryManager.getLinks();
+
+    $scope.gridOptions = {
+        data: $scope.jsonData,
+        multiSelect: false
+    };
+
+
+    $scope.sampleLinks = [
+        "http://services.odata.org/V3/OData/OData.svc",
+        "http://services.odata.org/V3/Northwind/Northwind.svc"
+    ];
 
     $scope.team = [
         {
-            name: "Hasan Abo-Shally",
+            name: "Hasan Abo-Shally (Team Leader)",
             photoUrl: "resources/photos/color/hasan.jpg",
             linkedin: "http://www.linkedin.com/profile/view?id=183930974",
-            description: "Hasan led the team developing the project.<br />He worked on the application's structure, the user interface, the integration of the addons into the tool, and some other stuff."
+            description: "Hasan led the team developing the project.<br />He worked on the application's structure, the user interface, integrating the addons into the tool, and some other stuff."
         },
         //{
         //    name: "Ghassan Fadila",
@@ -47,6 +51,12 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             photoUrl: "resources/photos/color/hakam.jpg",
             linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
             description: "Hakam worked on the tree and entity-graph plugins for displaying the meta-data, and wrapped them into AngularJS directives."
+        },
+        {
+            name: "Haytham Biadse",
+            photoUrl: "resources/photos/color/haytham.jpg",
+            linkedin: "http://il.linkedin.com/pub/haytham-biadse/12/154/230/",
+            description: "Haytham worked on the <a href='http://gallery.odatatools.org'>Odata Gallery</a> server side, the server is built with NodeJS and uses MongoDB to store data."
         }
         //,
         //{
@@ -72,7 +82,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             photoUrl: "resources/photos/color/shalom.jpg",
             linkedin: "il.linkedin.com/pub/shalom-weiss/1/754/b76/",
             description: "Shalom was the admenstrative mentor, he made sure everything goes well, and also helped with testing the tool."
-        },
+        }
     ]
 
 
@@ -139,21 +149,15 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         $scope.loadData();
     }
 
-
-
     $scope.setNewOdataUrl = function (url) {
         $scope.newOdataUrl = url;
     }
 
-    $scope.gridOptions = {
-        data: $scope.jsonData,
-        multiSelect: false
-    };
 
 
 
-    if ($routeParams.url)
-        $scope.changeDataUrl($routeParams.url);
+
+
 
     //****************************************************************************************************
 
@@ -192,6 +196,10 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             placement: "bottom"
         }
     ]);
+
+
+    if ($routeParams.url)
+        $scope.changeDataUrl($routeParams.url);
 
     $scope.showHelp = function () {
         tour.goto(0);

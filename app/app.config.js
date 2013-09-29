@@ -3,10 +3,17 @@
 app.config(function ($routeProvider) {
     $routeProvider
      .when('/', { controller: 'HomeCtrl', templateUrl: 'app/pages/home/home.tpl.html' })
+     .when('/:url', { controller: 'HomeCtrl', templateUrl: 'app/pages/home/home.tpl.html' })
      .when('/about', { controller: 'AboutCtrl', templateUrl: 'app/pages/about/about.tpl.html' })
-     //.otherwise({ redirectTo: '/' });
+     .otherwise({ redirectTo: '/' });
 });
 
+// To enable 'ng-bind-html'
+app.config(function ($sceProvider) {
+    // Completely disable SCE.  For demonstration purposes only!
+    // Do not use in new projects.
+    $sceProvider.enabled(false);
+});
 
 app.config(function ($httpProvider) {
     $httpProvider.responseInterceptors.push('myHttpInterceptor');

@@ -283,6 +283,9 @@
                 </p>
 
 
+                <a href="https://github.com/ODataTools">
+                    <img style="display: block; width: 25%; margin: 20px auto;" src="resources/on-github.png" />
+                </a>
                 <hr />
 
                 <!--                <section class="mentors">
@@ -293,7 +296,6 @@
                             <div class="col-md-3">
                                 <img class="img-responsive" src="resources/photos/eyal.jpg" />
                                 <a class="linked-in" href="http://www.linkedin.com/profile/view?id=18109570" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>
-                               
                                 
                             </div>
                             <div class="col-md-9">
@@ -308,24 +310,26 @@
                 </section>-->
 
                 <section class="team">
-                                       <header class="row">
+                    <header class="row">
                         Team
                     </header>
 
                     <ul class="members-list list-unstyled container">
                         <li class="member row" ng-repeat="member in team">
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <img class="img-responsive" ng-src="{{member.photoUrl}}" />
-                                <a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>
+
 
                             </div>
-                            <div class="col-md-9">
-                                <label>{{member.name}}</label>
+                            <div class="col-md-8">
+                                <label><a href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>{{member.name}}</a></label>
 
-                                <p>
-                                    {{ member.description}}
+                                <p ng-bind-html=" member.description">
                                 </p>
+
+                                <!--<a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>-->
+
                             </div>
 
 
@@ -336,7 +340,7 @@
                 <hr />
 
                 <section class="mentors container">
-                                        <header class="row">
+                    <header class="row">
                         Mentors
                     </header>
                     <div class="row">
@@ -344,15 +348,15 @@
                             <div class="row">
                                 <div class="member">
                                     <img class="img-responsive" ng-src="{{member.photoUrl}}" />
-                                    <label>{{member.name}}</label>
+                                    <label><a href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>{{member.name}}</a></label>
 
-                                    <a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>
-                                    
+
+                                    <!--<a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>-->
+
 
                                     <hr />
 
-                                    <p>
-                                        {{ member.description}}
+                                    <p ng-bind-html=" member.description">
                                     </p>
 
                                 </div>
