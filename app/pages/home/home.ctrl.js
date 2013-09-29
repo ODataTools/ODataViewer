@@ -107,8 +107,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         });
 
         tour.goto(1);
-        tour.start();
-
     }
 
     $scope.removeHistoryLink = function (url) {
