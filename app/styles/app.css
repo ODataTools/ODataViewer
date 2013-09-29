@@ -192,27 +192,27 @@
 button i {
   margin-right: 5px;
 }
-#settings {
+#modal-url-settings {
   padding-top: 20px;
 }
-#settings section {
-  margin-bottom: 20px;
+section.nice-panel {
+  margin: 10px 0px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
   box-shadow: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
   color: 0 1px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
   background: white;
 }
-#settings section header {
+section.nice-panel header {
   background: #f9f9f9;
   padding: 5px;
   border-bottom: 1px dashed #e5e5e5;
 }
-#settings section header i {
+section.nice-panel header i {
   color: #e5e5e5;
   font-size: 150%;
 }
-#settings section header h3 {
+section.nice-panel header h3 {
   display: inline-block;
   margin: 0px;
   margin-left: 5px;
@@ -220,7 +220,7 @@ button i {
   font-size: 100%;
   font-weight: bold;
 }
-#settings section > div {
+section.nice-panel > div {
   padding: 20px;
 }
 ul.odata-links button.close {

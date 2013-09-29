@@ -69,18 +69,11 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         return (link === $scope.currentLink);
     }
 
-    $scope.showSettings = function () {
+    $scope.showMetaData = function () {
         if (snapper.state().state == "left")
             snapper.close();
         else
             snapper.open('left');
-    }
-
-    $scope.showMetaData = function () {
-        if (snapper.state().state == "right")
-            snapper.close();
-        else
-            snapper.open('right');
     }
 
     $scope.changeDataUrl = function (url) {
@@ -132,6 +125,11 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         $scope.loadData();
     }
 
+
+
+    $scope.setNewOdataUrl = function (url) {
+        $scope.newOdataUrl = url;
+    }
 
     $scope.gridOptions = {
         data: $scope.jsonData,
@@ -193,4 +191,5 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
     tour.start();
+
 });

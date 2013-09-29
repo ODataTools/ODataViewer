@@ -6,112 +6,7 @@
                     <div class="col-md-12" id="settings">
 
 
-                        <section>
-
-                            <header>
-                                <i class="icon-link"></i>
-                                <h3>New URL</h3>
-                            </header>
-                            <div>
-                                <form role="form" class="container" style="margin-bottom: 0px">
-
-                                    <div class="form-group row">
-
-                                        <div class="col-md-9">
-
-                                            <input id="new-url-input" type="text" class="form-control" placeholder="url" ng-model="currentLink" />
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <button id="new-url-btn" type="button" class="btn btn-success form-control" ng-click="changeDataUrl(currentLink)">Go</button>
-
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div class="form-group">
-                                    </div>
-
-                                </form>
-                            </div>
-                        </section>
-
-                        <section>
-
-                            <header>
-                                <i class="icon-columns"></i>
-                                <h3>Data View Type</h3>
-                            </header>
-                            <div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="dataViewType" value="xml" type="radio" name="options">
-                                        XML
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="dataViewType" value="json" type="radio" name="options">
-                                        JSON
-                                    </label>
-                                </div>
-
-
-
-                                <div class="radio">
-                                    <label>
-                                        <input ng-model="dataViewType" value="table" type="radio" name="options">
-                                        Table
-                                    </label>
-                                </div>
-
-                            </div>
-                        </section>
-
-                        <section>
-                            <header>
-                                <i class="icon-list"></i>
-                                <h3>History</h3>
-                            </header>
-                            <div>
-                                <ul class="list-unstyled odata-links">
-
-                                    <li ng-repeat="link in historyLinks" style="position: relative;">
-
-                                        <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-                                        <!--ng-class="{'active':isSelectedLink(link)}"-->
-                                        <div class="alert-dismissable" ng-click="changeDataUrl(link);">
-                                            <span>{{link}}</span>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </section>
-
-                        <section>
-                            <header>
-                                <i class="icon-rocket"></i>
-                                <h3>Sample URLs</h3>
-                            </header>
-                            <div>
-                                <ul class="list-unstyled odata-links">
-
-                                    <li ng-repeat="link in sampleLinks" style="position: relative;">
-
-                                        <div class="alert-dismissable" ng-click="changeDataUrl(link);">
-                                            <span>{{link}}</span>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </section>
+                        <tree-view source-data="metadata"></tree-view>
 
 
 
@@ -130,7 +25,7 @@
 
                         <hr />-->
 
-                        <tree-view source-data="metadata"></tree-view>
+
 
                     </div>
                 </div>
@@ -143,7 +38,14 @@
         <header id="site-header" class="row">
 
             <div class="col-md-5">
-                <button id="settings-btn" ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>
+
+                <button style="margin-right: 20px;" ng-show="metadata" ng-click="showMetaData()" class="btn navigation-btn pull-left">Metadata</button>
+
+                <!--<button id="settings-btn" ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>-->
+
+                <a data-toggle="modal" href="/#modal-url-settings" class="btn navigation-btn pull-left">OData Source URL</a>
+
+
             </div>
 
             <div class="col-md-2">
@@ -151,12 +53,12 @@
             </div>
 
             <div class="col-md-5">
-                <a data-toggle="modal" href="#modal-about" class="btn navigation-btn pull-right">About</a>
+                <a data-toggle="modal" href="/#modal-about" class="btn navigation-btn pull-right">About</a>
 
                 <button ng-click="showHelp()" class="btn navigation-btn pull-right">Help</button>
 
 
-                <button style="margin-right: 20px;" ng-show="metadata" ng-click="showMetaData()" class="btn navigation-btn pull-right">Metadata</button>
+
 
             </div>
 
@@ -182,32 +84,73 @@
 
             </form>
 
+            <hr />
 
-            <div class="row">   <!--ng-show="(jsonData || xmlData)"-->
+            <div class="row">
+                <!--ng-show="(jsonData || xmlData)"-->
                 <div class="col-md-12">
-                    <div class="data-container">
 
-                        <div ng-show="(dataViewType == 'json')">
-                            <div json-view model="jsonData"></div>
+
+
+                    <section class="nice-panel">
+
+                        <header style="overflow: auto;">
+                            <i class="icon-table"></i>
+                            <h3>Query-Results - {{dataViewType}}</h3>
+
+
+                            <div class="btn-group pull-right" data-toggle="buttons">
+                                <label class="btn btn-default" style="padding:2px 10px" ng-click="dataViewType='xml'" ng-class="{'active':(dataViewType=='xml')}">
+                                    XML
+                                </label>
+
+                                <label class="btn btn-default" style="padding:2px 10px" ng-click="dataViewType='json'" ng-class="{'active':(dataViewType=='json')}">
+                                    JSON
+                                </label>
+                                <label class="btn btn-default" style="padding:2px 10px" ng-click="dataViewType='table'" ng-class="{'active':(dataViewType=='table')}">
+                                    Table
+                                </label>
+                            </div>
+
+
+
+
+                        </header>
+
+                        <div>
+
+                            <div ng-show="(dataViewType == 'json')">
+                                <div json-view model="jsonData"></div>
+                            </div>
+
+                            <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>
+
+
+                            <section ng-show="(dataViewType == 'xml')">
+
+                                <div xml-view model="xmlData"></div>
+
+                            </section>
                         </div>
 
-                        <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>
+                    </section>
 
-
-                        <section ng-show="(dataViewType == 'xml')">
-
-                            <div xml-view model="xmlData"></div>
-
-                        </section>
-                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="data-container">
-                        <div graph-view source-data="metadata"></div>
-                    </div>
+                    <section class="nice-panel">
+
+                        <header>
+                            <i class="icon-sitemap"></i>
+                            <h3>Metadata Graph</h3>
+                        </header>
+
+                        <div>
+                            <div graph-view source-data="metadata"></div>
+                        </div>
+                    </section>
                 </div>
             </div>
 
@@ -241,6 +184,108 @@
 
     </div>
 </div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-url-settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">OData Source URL</h4>
+            </div>
+            <div class="modal-body">
+
+                <section class="nice-panel">
+
+                    <header>
+                        <i class="icon-link"></i>
+                        <h3>New URL</h3>
+                    </header>
+                    <div>
+                        <form role="form" class="container" style="margin-bottom: 0px">
+
+                            <div class="form-group row">
+
+                                <div class="col-md-12">
+
+                                    <input id="new-url-input" type="text" class="form-control" placeholder="url.." ng-model="newOdataUrl" />
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="form-group">
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+
+                <section class="nice-panel">
+                    <header>
+                        <i class="icon-list"></i>
+                        <h3>History</h3>
+                    </header>
+                    <div>
+                        <ul class="list-unstyled odata-links">
+
+                            <li ng-repeat="link in historyLinks" style="position: relative;">
+
+                                <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                <!--ng-class="{'active':isSelectedLink(link)}"-->
+                                <div class="alert-dismissable" ng-click="setNewOdataUrl(link)">
+                                    <span>{{link}}</span>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="nice-panel">
+                    <header>
+                        <i class="icon-rocket"></i>
+                        <h3>Sample URLs</h3>
+                    </header>
+                    <div>
+                        <ul class="list-unstyled odata-links">
+
+                            <li ng-repeat="link in sampleLinks" style="position: relative;">
+
+                                <div class="alert-dismissable" ng-click="setNewOdataUrl(link)">
+                                    <span>{{link}}</span>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </section>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="changeDataUrl(newOdataUrl)" style="padding-left: 50px; padding-right: 50px;">Save</button>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
 
 
 <!-- Modal -->
