@@ -31,6 +31,17 @@
   color: white;
   margin-left: 5px;
   margin-right: 5px;
+  -webkit-transition: -webkit-box-shadow 0.1s ease-in-out;
+  -moz-transition: -moz-box-shadow 0.1s ease-in-out;
+  -o-transition: box-shadow 0.1s ease-in-out;
+  -ms-transition: box-shadow 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+#site-header .navigation-btn:hover {
+  -webkit-box-shadow: 0px 0px 5px 1px white;
+  -moz-box-shadow: 0px 0px 5px 1px white;
+  box-shadow: 0px 0px 5px 1px white;
+  color: 0px 0px 5px 1px white;
 }
 #site-header #site-logo {
   height: 20px;
@@ -246,6 +257,9 @@ ul.odata-links li {
 ul.odata-links li:not(:last-child) {
   margin-bottom: 10px;
 }
+#modal-about section {
+  padding: 0px;
+}
 #modal-about section header {
   background: #f9f9f9;
   padding: 10px;
@@ -257,7 +271,7 @@ ul.odata-links li:not(:last-child) {
 #modal-about .members-list {
   padding: 0px;
 }
-#modal-about .members-list li {
+#modal-about .member {
   -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
   -moz-box-shadow: 0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
   box-shadow: 0 0px 2px rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.1);
@@ -266,7 +280,7 @@ ul.odata-links li:not(:last-child) {
   margin: 10px 0px;
   padding: 5px;
 }
-#modal-about .members-list li .linked-in {
+#modal-about .member .linked-in {
   text-decoration: none !important;
   font-size: 75%;
   display: block;
@@ -274,12 +288,12 @@ ul.odata-links li:not(:last-child) {
   margin-top: 5px;
   color: gray;
 }
-#modal-about .members-list li .linked-in i {
+#modal-about .member .linked-in i {
   font-size: 150%;
   margin-right: 5px;
   color: #1D87BE;
 }
-#modal-about .members-list img {
+#modal-about .member img {
   -webkit-border-radius: 100%;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 100%;
@@ -288,6 +302,24 @@ ul.odata-links li:not(:last-child) {
   background-clip: padding-box;
   padding: 5px;
   border: 1px solid #e5e5e5;
+}
+#modal-about .mentors .member {
+  padding: 10px;
+  height: 300px;
+  margin: 10px;
+}
+#modal-about .mentors .member label {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+#modal-about .mentors .member hr {
+  margin: 10px;
+}
+#modal-about .mentors .member img {
+  display: block;
+  width: 50%;
+  margin: 0px auto;
 }
 #loading-spinner {
   position: fixed;

@@ -39,11 +39,11 @@
 
             <div class="col-md-5">
 
-                <button style="margin-right: 20px;" ng-show="metadata" ng-click="showMetaData()" class="btn navigation-btn pull-left">Metadata</button>
+                <button ng-show="metadata" ng-click="showMetaData()" class="btn navigation-btn pull-left">Metadata</button>
 
                 <!--<button id="settings-btn" ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>-->
 
-                <a data-toggle="modal" href="/#modal-url-settings" class="btn navigation-btn pull-left">OData Source URL</a>
+                <a id="odata-source-show-modal-btn" data-toggle="modal" href="/#/#modal-url-settings" class="btn navigation-btn pull-left">OData Source URL</a>
 
 
             </div>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="col-md-5">
-                <a data-toggle="modal" href="/#modal-about" class="btn navigation-btn pull-right">About</a>
+                <a data-toggle="modal" href="/#/#modal-about" class="btn navigation-btn pull-right">About</a>
 
                 <button ng-click="showHelp()" class="btn navigation-btn pull-right">Help</button>
 
@@ -100,14 +100,14 @@
 
 
                             <div class="btn-group pull-right" data-toggle="buttons">
-                                <label class="btn btn-default" style="padding:2px 10px" ng-click="dataViewType='xml'" ng-class="{'active':(dataViewType=='xml')}">
+                                <label class="btn btn-default" style="padding: 2px 10px" ng-click="dataViewType='xml'" ng-class="{'active':(dataViewType=='xml')}">
                                     XML
                                 </label>
 
-                                <label class="btn btn-default" style="padding:2px 10px" ng-click="dataViewType='json'" ng-class="{'active':(dataViewType=='json')}">
+                                <label class="btn btn-default" style="padding: 2px 10px" ng-click="dataViewType='json'" ng-class="{'active':(dataViewType=='json')}">
                                     JSON
                                 </label>
-                                <label class="btn btn-default" style="padding:2px 10px" ng-click="dataViewType='table'" ng-class="{'active':(dataViewType=='table')}">
+                                <label class="btn btn-default" style="padding: 2px 10px" ng-click="dataViewType='table'" ng-class="{'active':(dataViewType=='table')}">
                                     Table
                                 </label>
                             </div>
@@ -201,33 +201,9 @@
             </div>
             <div class="modal-body">
 
-                <section class="nice-panel">
+                <input style="font-size: 120%; font-family: monospace; font-weight: bold; color: #4679bd; width: 100%; padding: 5px; border: 1px solid #e5e5e5" id="new-url-input" type="text" placeholder="url.." ng-model="newOdataUrl" />
 
-                    <header>
-                        <i class="icon-link"></i>
-                        <h3>New URL</h3>
-                    </header>
-                    <div>
-                        <form role="form" class="container" style="margin-bottom: 0px">
-
-                            <div class="form-group row">
-
-                                <div class="col-md-12">
-
-                                    <input id="new-url-input" type="text" class="form-control" placeholder="url.." ng-model="newOdataUrl" />
-                                </div>
-
-
-
-
-                            </div>
-
-                            <div class="form-group">
-                            </div>
-
-                        </form>
-                    </div>
-                </section>
+                <hr />
 
                 <section class="nice-panel">
                     <header>
@@ -275,7 +251,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="changeDataUrl(newOdataUrl)" style="padding-left: 50px; padding-right: 50px;">Save</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="changeDataUrl(newOdataUrl)" style="padding-left: 50px; padding-right: 50px;">Start</button>
             </div>
 
         </div>
@@ -332,12 +308,12 @@
                 </section>-->
 
                 <section class="team">
-                    <!--                    <header>
+                                       <header class="row">
                         Team
-                    </header>-->
+                    </header>
 
                     <ul class="members-list list-unstyled container">
-                        <li ng-repeat="member in team" class="row">
+                        <li class="member row" ng-repeat="member in team">
 
                             <div class="col-md-3">
                                 <img class="img-responsive" ng-src="{{member.photoUrl}}" />
@@ -356,6 +332,36 @@
                         </li>
                     </ul>
                 </section>
+
+                <hr />
+
+                <section class="mentors container">
+                                        <header class="row">
+                        Mentors
+                    </header>
+                    <div class="row">
+                        <div ng-repeat="member in mentors" class="col-md-6">
+                            <div class="row">
+                                <div class="member">
+                                    <img class="img-responsive" ng-src="{{member.photoUrl}}" />
+                                    <label>{{member.name}}</label>
+
+                                    <a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>
+                                    
+
+                                    <hr />
+
+                                    <p>
+                                        {{ member.description}}
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
                 <hr />
 
 
