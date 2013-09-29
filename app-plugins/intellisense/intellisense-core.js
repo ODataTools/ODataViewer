@@ -116,6 +116,7 @@ Intellisense.prototype.getTypeIndex = function (setIndex) {
  */
 Intellisense.prototype.getIntellisenseFromArr = function (str, arr) {
     var retVal = [];
+
     for (var i = 0; i < arr.length; i++) {
         if (arr[i]['@Name'] && arr[i]['@Name'].toLowerCase().indexOf(str.toLowerCase()) == 0 && arr[i]['@Name'] !== str) {
             retVal.push(arr[i]);
@@ -176,6 +177,9 @@ Intellisense.prototype.getResourceIntellisense = function (resource) {
     var parts = resource.split('/');
 
     if (parts.length == 1) {
+
+
+
         //quick solution to move to its own method when done
         for (var i = 0; i < this.sets.length; i++) {
             if (parts[0] == this.sets[i]['@Name']) {
@@ -183,14 +187,29 @@ Intellisense.prototype.getResourceIntellisense = function (resource) {
                 var properties = this.getTypeProperties(type);
                 this.lastProperties = this.getTypeProperties(type);
                 var selected = (parts[0].split('(').length > 1);
+
                 if (selected) {
                     return [{ '@Name': '/' }, { '@Name': ')' }, { '@Name': '?' }];
                 }
+
                 return [{ '@Name': '(' }, { '@Name': '?' }];
             }
         }
 
-        return this.getIntellisenseFromArr(parts[0], this.sets);
+
+
+        // Modified by HASAN 201309290232
+
+        var result = this.getIntellisenseFromArr(parts[0], this.sets);
+
+        // If the query is still empty, add the $metadata to the suggestions.
+        if (resource == "") {
+            result.unshift({ "@Name": "$metadata", "type": "query" });
+        }
+
+        return result;
+
+        // *********************************************
     }
 
     var setIndex = this.getIndexByName(this.sets, parts[0].split('(')[0]);
@@ -225,7 +244,7 @@ Intellisense.prototype.getSelectIntellisense = function (query) {
     var expected = -1;
 
     if (parts.length == 1) {
-        return this.getIntellisenseFromArr(parts[0], this.lastProperties.concat([{ '@Name': '&' }, {'@Name': ','}]));
+        return this.getIntellisenseFromArr(parts[0], this.lastProperties.concat([{ '@Name': '&' }, { '@Name': ',' }]));
     }
 
     expected = this.getExpectedType(parts, this.lastProperties);
@@ -278,7 +297,7 @@ Intellisense.prototype.getExpandIntellisense = function (query) {
  */
 Intellisense.prototype.getFilterIntellisense = function (query) {
     var last = query.split(/\s+/).pop();
-    return this.getIntellisenseFromArr(last, this.lastProperties.concat(this.queryArithmaticOps, this.queryLogicalOps, [{'@Name':'&'}]));
+    return this.getIntellisenseFromArr(last, this.lastProperties.concat(this.queryArithmaticOps, this.queryLogicalOps, [{ '@Name': '&' }]));
 }
 
 /**
@@ -366,7 +385,7 @@ Intellisense.prototype.getIntellisense = function (str) {
 };
 
 Intellisense.appendSuggestion = function (str, intel) {
-    if (intel == '/' || intel == '?'|| intel == '(') {
+    if (intel == '/' || intel == '?' || intel == '(') {
         return str + intel;
     }
 
@@ -391,7 +410,7 @@ Intellisense.appendSuggestion = function (str, intel) {
     //query option completion
     if (lastQueryArr.length == 1) {
         if (parts[1].length > 0) {
-            return addIntel(str,intel,'&');
+            return addIntel(str, intel, '&');
         }
         return addIntel(str, intel, '?');
     }

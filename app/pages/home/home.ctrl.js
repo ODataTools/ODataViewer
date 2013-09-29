@@ -39,27 +39,27 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             name: "Hasan Abo-Shally",
             photoUrl: "resources/photos/color/hasan.jpg",
             linkedin: "http://www.linkedin.com/profile/view?id=183930974",
-            description: "Hasan led the team developing the project.<br />He worked on the application's structure, the user interface, and the integration of the addons into the tool."
+            description: "Hasan led the team developing the project.<br />He worked on the application's structure, the user interface, the integration of the addons into the tool, and some other stuff."
         },
-        {
-            name: "Ghassan Fadila",
-            photoUrl: "resources/photos/color/ghassan.jpg",
-            //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
-            description: "Ghassan worked on the intellisense plugin that provided suggestions for the auto complete feature based on the given url, he also helped other team members with their work."
-        },
+        //{
+        //    name: "Ghassan Fadila",
+        //    photoUrl: "resources/photos/color/ghassan.jpg",
+        //    //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
+        //    description: "Ghassan worked on the intellisense plugin that provided suggestions for the auto complete feature based on the given url, he also helped other team members with their work."
+        //},
         {
             name: "Hakam Kittany",
             photoUrl: "resources/photos/color/hakam.jpg",
             linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
             description: "Hakam worked on the tree and entity-graph plugins for displaying the meta-data, and wrapped them into AngularJS directives."
         }
-        ,
-        {
-            name: "Mohammad Abu Shah",
-            photoUrl: "resources/photos/color/shah.jpg",
-            //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
-            description: "Mohammad worked on the testing of the intellisense plugin."
-        }
+        //,
+        //{
+        //    name: "Mohammad Abu Shah",
+        //    photoUrl: "resources/photos/color/shah.jpg",
+        //    //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
+        //    description: "Mohammad worked on the testing of the intellisense plugin."
+        //}
     ];
 
 
