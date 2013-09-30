@@ -14,7 +14,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
     //*****************************************************
-    $scope.currentLink;
+    $scope.currentUrl;
     $scope.metadata;
     $scope.jsonData;
     $scope.xmlData;
@@ -87,7 +87,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
     $scope.isSelectedLink = function (link) {
-        return (link === $scope.currentLink);
+        return (link === $scope.currentUrl);
     }
 
     $scope.showMetaData = function () {
@@ -98,7 +98,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     }
 
     $scope.changeDataUrl = function (url) {
-        $scope.currentLink = url;
+        $scope.currentUrl = url;
 
         // Remove the trailing slash (if exists) from the url. 
         if (url.substr(-1) == '/')
@@ -126,14 +126,12 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.loadData = function () {
 
         var query = $scope.intellisenseQuery || '';
-        var url = $scope.currentLink + "/" + query;
+        var url = $scope.currentUrl + "/" + query;
 
         var isXml = $scope.dataViewType == "xml";
 
         DataManager.getData(url, isXml).then(function (result) {
-
             $scope.$safeApply(function () {
-
                 if (isXml)
                     $scope.xmlData = result.data;
                 else
@@ -156,7 +154,10 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
 
 
-
+    $scope.$watch('dataViewType', function (newVal, oldVal) {
+        if ($scope.currentUrl)
+            $scope.loadData();
+    });
 
 
     //****************************************************************************************************
