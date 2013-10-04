@@ -158,7 +158,101 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         if ($scope.currentUrl)
             $scope.loadData();
     });
+    
+    //****************************************************************************************************
+    // TODO: put code in service/directive
+    
+     $scope.GoTo = function (row, clickedColl) {
+        $scope.intellisenseQuery += "(" + row.entity.ID + ")/" + clickedColl;
+        $scope.loadData();
+    }
+    function buildColumns(associationArray) {
+        var result = [];
+        if (!$scope.jsonData)
+            return;
+        var obj;
+        if ($scope.jsonData.value)
+            obj = $scope.jsonData.value[0];
+        else
+            obj = $scope.jsonData;
 
+        for (var k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                result.push({ field: k.toString(), displayName: k.toString() });
+            }
+        }
+        for (var i = 0; i < associationArray.length; i++) {
+            var t = associationArray[i].toString();
+            var ob = '<button ng-click="GoTo(row, \'' + t.toString() + '\')">Go</button>';
+            result.push({ field: associationArray[i].toString(), displayName: associationArray[i].toString(), cellTemplate: ob });
+        }
+
+
+
+        return result;
+    }
+
+    function getAssociations() {
+        if (!getCurrentCollection())
+            return;
+        var schema = $scope.metadata["edmx:Edmx"]["edmx:DataServices"]["Schema"];
+        var coll = getSingularNameFromPlural(getCurrentCollection());
+        if (!coll)
+            coll = getCurrentCollection();
+        var resultArray = [];
+        if (schema instanceof Array) {
+            schema = schema[0];
+        }
+        var association = schema.Association;
+        for (var i = 0; i < association.length; i++) {
+            if (association[i]['End'][0]['@Type'].split('.')[1] === coll) {
+                resultArray.push(association[i]['End'][1]['@Type'].split('.')[1]);
+            }
+            else {
+                if (association[i]['End'][1]['@Type'].split('.')[1] === coll) {
+                    resultArray.push(association[i]['End'][0]['@Type'].split('.')[1]);
+                }
+            }
+        }
+        return resultArray;
+    }
+
+    function getCurrentCollection() {
+        var arr = $scope.intellisenseQuery.split("/");
+        return arr[arr.length - 1].split("(")[0];
+    }
+
+    function getSingularNameFromPlural(pluralName) {
+        var schema = $scope.metadata["edmx:Edmx"]["edmx:DataServices"]["Schema"];
+
+        if (schema instanceof Array) {
+            for (var i = 0; i < schema.length; i++) {
+                if (schema[i].EntityContainer && schema[i].EntityContainer.EntitySet) {
+                    schema = schema[i];
+                    break;
+                }
+            }
+        }
+
+        for (var i = 0; i < schema.EntityContainer.EntitySet.length; i++) {
+            if (schema.EntityContainer.EntitySet[i]["@Name"] === pluralName) {
+                return schema.EntityContainer.EntitySet[i]["@EntityType"].split('.')[1];
+            }
+        }
+    }
+
+
+    function getPluralNameFromSingular(singularName) {
+        var schema = $scope.metadata["edmx:Edmx"]["edmx:DataServices"]["Schema"];
+        if (schema instanceof Array) {
+            schema = schema[0];
+        }
+        for (var i = 0; i < schema.EntityContainer.EntitySet.length; i++) {
+            if (schema.EntityContainer.EntitySet[i]["@EntityType"].indexOf(singularName) != -1) {
+                return schema.EntityContainer.EntitySet[i]["@Name"];
+            }
+        }
+    }
 
     //****************************************************************************************************
 
