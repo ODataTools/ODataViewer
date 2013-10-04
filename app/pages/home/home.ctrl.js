@@ -23,9 +23,11 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.historyLinks = HistoryManager.getLinks();
 
     $scope.gridOptions = {
-        data: $scope.jsonData,
-        multiSelect: false
+        data: 'jsonData.value',
+        multiSelect: false,
+        columnDefs: 'columnDefs'
     };
+
 
 
     $scope.sampleLinks = [
@@ -134,8 +136,16 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             $scope.$safeApply(function () {
                 if (isXml)
                     $scope.xmlData = result.data;
-                else
+                else{
                     $scope.jsonData = result.data;
+                    var aa = getAssociations();
+                    $scope.columnDefs = buildColumns(aa);
+                    if (!$scope.jsonData.value) {
+                        var tmp = [];
+                        tmp.push($scope.jsonData);
+                        $scope.jsonData.value = tmp;
+                    }
+                }
             });
         });
     }
