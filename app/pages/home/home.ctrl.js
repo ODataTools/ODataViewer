@@ -169,12 +169,21 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             $scope.loadData();
     });
     
-    //****************************************************************************************************
+     //****************************************************************************************************
     // TODO: put code in service/directive
     
-     $scope.GoTo = function (row, clickedColl) {
-        $scope.intellisenseQuery += "(" + row.entity.ID + ")/" + clickedColl;
-        $scope.loadData();
+    $scope.GoTo = function (row, clickedColl) {
+        var id;
+        for (var k in row.entity) {
+            if (row.entity.hasOwnProperty(k)) {
+                if (k.toString().toLowerCase().indexOf("id") != -1) {
+                    id = row.entity[k.toString()];
+                    break;
+                }
+            }
+        }
+        $scope.intellisenseQuery += "(" + id.toString() + ")/" + clickedColl; 
+        $scope.loadData();        
     }
     function buildColumns(associationArray) {
         var result = [];
@@ -191,6 +200,9 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
                 result.push({ field: k.toString(), displayName: k.toString() });
             }
         }
+        if (!associationArray)
+            return result;
+
         for (var i = 0; i < associationArray.length; i++) {
             var t = associationArray[i].toString();
             var ob = '<button ng-click="GoTo(row, \'' + t.toString() + '\')">Go</button>';
@@ -214,6 +226,9 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             schema = schema[0];
         }
         var association = schema.Association;
+        if (!association)
+            return resultArray;
+
         for (var i = 0; i < association.length; i++) {
             if (association[i]['End'][0]['@Type'].split('.')[1] === coll) {
                 resultArray.push(association[i]['End'][1]['@Type'].split('.')[1]);
@@ -243,7 +258,8 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
                 }
             }
         }
-
+        if (!schema.EntityContainer)
+            return;
         for (var i = 0; i < schema.EntityContainer.EntitySet.length; i++) {
             if (schema.EntityContainer.EntitySet[i]["@Name"] === pluralName) {
                 return schema.EntityContainer.EntitySet[i]["@EntityType"].split('.')[1];
@@ -265,6 +281,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     }
 
     //****************************************************************************************************
+
 
     snapper = new Snap({
         element: document.getElementById('content')
