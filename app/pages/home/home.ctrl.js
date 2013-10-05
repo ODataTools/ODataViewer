@@ -42,12 +42,12 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             linkedin: "http://www.linkedin.com/profile/view?id=183930974",
             description: "Hasan led the team developing the project.<br />He worked on the application's structure, the user interface, integrating the addons into the tool, and some other stuff."
         },
-        //{
-        //    name: "Ghassan Fadila",
-        //    photoUrl: "resources/photos/color/ghassan.jpg",
-        //    //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
-        //    description: "Ghassan worked on the intellisense plugin that provided suggestions for the auto complete feature based on the given url, he also helped other team members with their work."
-        //},
+        {
+            name: "Ghassan Fadila",
+            photoUrl: "resources/photos/color/ghassan.jpg",
+            linkedin: "http://il.linkedin.com/pub/ghassan-fadila/82/1b2/56/ ",
+            description: "Ghassan worked on the intellisense plugin, on rest and the oData server with Jaydata and mongoDB, Design the database and the server logic and add the basic functionality for users and the urls."
+        },
         {
             name: "Hakam Kittany",
             photoUrl: "resources/photos/color/hakam.jpg",
