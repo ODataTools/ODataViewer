@@ -68,7 +68,7 @@
             if (data[i]['Key'] != undefined) {
 
                 if (data[i]['Key'] instanceof Array) {
-                    for (var ind in data[i]['Key']) {
+                    for (var ind = 0; ind < data[i]['Key'].length;ind++) {
 
                         if (data[i]['Key'][ind]['PropertyRef']['@Name'] === property) {
                             return true;
@@ -88,7 +88,7 @@
         function jsonDataAnalize(data) {
             var $$ = go.GraphObject.make;
             var yellowgrad = $$(go.Brush, go.Brush.Linear, { 0: "rgb(254, 221, 50)", 1: "rgb(254, 182, 50)" });
-            for (var i in data) {
+            for (var i = 0; i < data.length;i++) {
 
                 var newTable = new CreateTable();
                 newTable.setKey(data[i]['@Name']);
@@ -99,7 +99,7 @@
                 if (data[i]['Property'] != undefined) {
 
                     if (data[i]['Property'] instanceof Array) {
-                        for (var ind in data[i]['Property']) {
+                        for (var ind = 0; ind < data[i]['Property'].length;ind++) {
 
                             if (checkIsKey(i, data[i]['Property'][ind]['@Name'], data)) {
                                 var newItem = new CreateItem(data[i]['Property'][ind]['@Name'], true, "Decision", yellowgrad);
@@ -141,7 +141,7 @@
 
                 var tableFrom = association[i]['End'][0]['@Type'].split('.')[1];
                 var tableTo = association[i]['End'][1]['@Type'].split('.')[1];
-                for (var ind in data) {
+                for (var ind = 0; ind < data.length;ind++) {
                     if (data[ind]['@Name'] === tableFrom) {
                         if (data[ind]['@BaseType']) {
                             newLinkItem.setFrom(data[ind]['@Name'] + ' (BaseType: ' + data[ind]['@BaseType'].split('.')[1] + ' )');
