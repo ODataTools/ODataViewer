@@ -1,5 +1,22 @@
-﻿<p>
-    <input type="button" value=" expand all " onclick="$('#adoptme').jstree('open_all')" />
-    <input type="button" value=" collapse all " onclick="$('#adoptme').jstree('close_all')" />
-</p>
-<div id="adoptme" ></div>
+﻿<div class="container">
+
+    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="col-md-6" style="padding: 10px;">
+            <button onclick="$('#adoptme').jstree('open_all')" class="btn btn-default btn-block">
+                <i class="icon-expand"></i>Expand All</button>
+
+        </div>
+
+        <div class="col-md-6" style="padding: 10px;">
+            <button onclick="$('#adoptme').jstree('close_all')" class="btn btn-default btn-block">
+                <i class="icon-collapse-top"></i>Collapse All</button>
+
+        </div>
+
+    </div>
+
+
+    <div id="adoptme"></div>
+</div>
+
+

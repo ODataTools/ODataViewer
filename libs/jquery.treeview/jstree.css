@@ -77,7 +77,6 @@
   width: 800px;
   margin: 10px auto;
   overflow: hidden;
-  background: white;
   padding: 0 10px 10px 10px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -206,5 +205,9 @@
 .jstree ul.jstree li a {
   color: #3B5998;
   text-decoration: underline;
+}
+.jstree-classic.jstree-focused {
+  padding: 20px;
+  border: 1px solid #e5e5e5;
 }
 

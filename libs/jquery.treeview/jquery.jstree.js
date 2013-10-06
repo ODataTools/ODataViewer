@@ -277,7 +277,7 @@
 				'.jstree > ul > li { margin-left:0px; } ' + 
 				'.jstree-rtl > ul > li { margin-right:0px; } ' + 
 				'.jstree ins { display:inline-block; text-decoration:none; width:18px; height:18px; margin:0 0 0 0; padding:0; } ' + 
-				'.jstree a { display:inline-block; line-height:16px; height:16px; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } ' + 
+				'.jstree a { display:inline-block; border:1px solid transparent; font-size:110%; padding-top:1px!important; padding-bottom:1px!important; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } ' +
 				'.jstree a:focus { outline: none; } ' + 
 				'.jstree a > ins { height:16px; width:16px; } ' + 
 				'.jstree a > .jstree-icon { margin-right:3px; } ' + 
@@ -306,7 +306,7 @@
 		// Correct IE 7 (shifts anchor nodes onhover)
 		if(/msie/.test(u) && parseInt(v, 10) == 7) { 
 			is_ie7 = true;
-			css_string += '.jstree li a { border-width:0 !important; padding:0px 2px !important; } ';
+			css_string += '.jstree li a { border-width:0 !important; padding:2px 2px !important; } ';
 		}
 		// correct ff2 lack of display:inline-block
 		if(!/compatible/.test(u) && /mozilla/.test(u) && parseFloat(v, 10) < 1.9) {
