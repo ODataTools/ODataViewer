@@ -44,7 +44,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             name: "Ghassan Fadila",
             photoUrl: "resources/images/team/ghassan.jpg",
             linkedin: "http://il.linkedin.com/pub/ghassan-fadila/82/1b2/56/ ",
-            description: "Ghassan worked on the intellisense plugin which provides suggestions and auto-completion based on the provided OData url. And also worked on <a href='http://gallery.odatatools.org'>OdataGallery</a>"
+            description: "Ghassan worked on the intellisense plugin which provides suggestions and auto-completion based on the provided OData url. And also worked on the <a href='http://gallery.odatatools.org'>OdataGallery</a>."
         },
         {
             name: "Hakam Kittany",
