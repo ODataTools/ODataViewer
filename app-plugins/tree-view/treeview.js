@@ -13,10 +13,10 @@ angular.module('Plugins').directive('treeView', function () {
 
                 var ul_Entities = $('<ul>');
 
-                for (var i in data) {
+                for (var i = 0; i < data.length;i++) {
 
                     var li_Entity = $('<li >')
-                        .append($('<a href="#" >').html(data[i]['@Name'])),
+                        .append($('<a class="entity">').html(data[i]['@Name'])),
                         ul_Entity = $('<ul>');
                     ul_Entities.append(li_Entity.append(ul_Entity));
 
@@ -114,12 +114,23 @@ angular.module('Plugins').directive('treeView', function () {
                     $('#adoptme')
                     .append($('<ul>')
                     .append($('<li>')
-                    .append($('<span class="folder">').text(nameSpace))
-                    .append($('<ul>').append($('<li>').append($('<span class="folder">').text('Entity Set'))
+                    .append($('<a>').text(nameSpace))
+                    .append($('<ul>').append($('<li>').append($('<a>').text('Entity Set'))
                     .append(tree(types))))));
 
                     $(function () {
                         $("#adoptme").jstree({
+                            "types": {
+                                "types": {
+                                    "default": {
+                                        "select_node": function (e) {
+                                            this.toggle_node(e);
+                                            return false;
+                                        }
+
+                                    }
+                                }
+                            },
                             "themes": {
                                 "open_parents": true,
                                 "load_open": true,
@@ -127,9 +138,12 @@ angular.module('Plugins').directive('treeView', function () {
                                 "dots": true,
                                 "icons": true
                             },
-                            "plugins": ["themes", "html_data"]
+                            "plugins": ["themes", "html_data", "types", "ui"]
                         });
+                        
                     });
+                    setTimeout(function () { $('#adoptme').jstree('open_all')},25);
+                   
                 }
 
             });

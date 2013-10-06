@@ -78,16 +78,16 @@
 /* IE6 END */
 
 /*custom css style for tree*/
-.jstree-classic .jstree-leaf a[class='key'] .jstree-icon {
+.jstree-classic .jstree-leaf a.key .jstree-icon {
     background-image:url('../../images/keys.jpg');
     background-position:0;
-    background-repeat:no-repeat;
+
 }
-.jstree-classic .jstree-leaf a[class='property'] .jstree-icon {
+.jstree-classic .jstree-leaf a.property .jstree-icon {
     background-image:url('../../images/property.png');
     background-position:0;
 }
-.jstree-classic .jstree-leaf a[class='link'] .jstree-icon {
+.jstree-classic .jstree-leaf a.link .jstree-icon {
     background-image:url('../../images/link.png');
     background-position:0;
 }
