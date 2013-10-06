@@ -112,11 +112,12 @@ angular.module('Plugins').directive('treeView', function () {
                     $('#adoptme').html('');
 
                     $('#adoptme')
-                    .append($('<ul>')
-                    .append($('<li>')
-                    .append($('<a>').text(nameSpace))
-                    .append($('<ul>').append($('<li>').append($('<a>').text('Entity Set'))
-                    .append(tree(types))))));
+                    //.append($('<ul>')
+                    //.append($('<li>')
+                    //.append($('<a>').text(nameSpace))
+                    //.append($('<ul>').append($('<li>').append($('<a>').text('Entity Set'))
+                    //.append(tree(types))))));
+                    .append(tree(types));
 
                     $(function () {
                         $("#adoptme").jstree({
