@@ -161,6 +161,11 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
 
     $scope.setNewOdataUrl = function (url) {
         $scope.newOdataUrl = url;
+
+        setTimeout(function () {
+            $('#change-url-btn').trigger('click');
+        }, 0);
+
     }
 
 
@@ -334,4 +339,9 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         tour.goto(0);
         tour.start();
     }, 500);
+
+
+    $('.odata-links li').click(function () {
+        alert("a");
+    });
 });

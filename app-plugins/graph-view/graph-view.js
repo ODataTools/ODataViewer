@@ -7,6 +7,9 @@
             sourceData: '='
         },
         link: function (scope, iElement, iAttrs, controller) {
+
+            var myDiagram = initDiagram($(iElement).attr('id'));
+
             scope.$watch('sourceData', function () {
                 if (scope.sourceData && Object.keys(scope.sourceData).length > 0) {
 
@@ -21,14 +24,137 @@
                         association = schema.Association;
                     }
 
-                    var elementId = "myDiagram";
-                    start(association, data, elementId);
+
+                    start(myDiagram, association, data);
+
                 };
             });
         }
     }
 
-    function start(association, data, elementId) {
+    function initDiagram(elementId) {
+        if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+        var $ = go.GraphObject.make;  // for conciseness in defining templates
+
+       var myDiagram =
+          $(go.Diagram, elementId,  // must name or refer to the DIV HTML element
+            {
+                initialContentAlignment: go.Spot.Center,
+                allowDelete: false,
+                allowCopy: false,
+                //  allowZoom: true,
+                //  autoScale: go.Diagram.UniformToFill,
+                initialAutoScale: go.Diagram.UniformToFill,
+                layout: $(go.ForceDirectedLayout),
+                "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom
+            });
+
+        // define several shared Brushes
+        var bluegrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(150, 150, 250)", 0.5: "rgb(86, 86, 186)", 1: "rgb(86, 86, 186)" });
+        var greengrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(158, 209, 159)", 1: "rgb(67, 101, 56)" });
+        var redgrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(206, 106, 100)", 1: "rgb(180, 56, 50)" });
+        var yellowgrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(254, 221, 50)", 1: "rgb(254, 182, 50)" });
+        var lightgrad = $(go.Brush, go.Brush.Linear, { 1: "#E6E6FA", 0: "#FFFAF0" });
+
+        // the template for each attribute in a node's array of item data
+        var itemTempl =
+          $(go.Panel, "Horizontal",
+            $(go.Shape,
+              { desiredSize: new go.Size(10, 10) },
+              new go.Binding("figure", "figure"),
+              new go.Binding("fill", "color")),
+            $(go.TextBlock,
+              {
+                  stroke: "#333333",
+                  font: "bold 14px sans-serif"
+              },
+              new go.Binding("text", "", go.Binding.toString))
+          );
+
+        // define the Node template, representing an entity
+        myDiagram.nodeTemplate =
+          $(go.Node, "Auto",  // the whole node panel
+            {
+                selectionAdorned: true,
+                resizable: true,
+                layoutConditions: go.Part.LayoutNone,
+                fromSpot: go.Spot.AllSides,
+                toSpot: go.Spot.AllSides,
+                isShadowed: true,
+                shadowColor: "#C5C1AA"
+            },
+            new go.Binding("location", "location").makeTwoWay(),
+            // define the node's outer shape, which will surround the Table
+            $(go.Shape, "Rectangle",
+              { fill: lightgrad, stroke: "#756875", strokeWidth: 3 }),
+            $(go.Panel, "Table",
+              { margin: 8, stretch: go.GraphObject.Fill },
+              $(go.RowColumnDefinition, { row: 0, sizing: go.RowColumnDefinition.None }),
+              // the table header
+              $(go.TextBlock,
+                {
+                    row: 0, alignment: go.Spot.Center,
+                    font: "bold 16px sans-serif"
+                },
+                new go.Binding("text", "key")),
+              // the list of Panels, each showing an attribute
+              $(go.Panel, "Vertical",
+                {
+                    row: 1,
+                    padding: 3,
+                    alignment: go.Spot.TopLeft,
+                    defaultAlignment: go.Spot.Left,
+                    stretch: go.GraphObject.Horizontal,
+                    itemTemplate: itemTempl
+                },
+                new go.Binding("itemArray", "items"))
+            )  // end Table Panel
+          );  // end Node
+
+        // define the Link template, representing a relationship
+        myDiagram.linkTemplate =
+          $(go.Link,  // the whole link panel
+            {
+                selectionAdorned: true,
+                layerName: "Foreground",
+                reshapable: true,
+                routing: go.Link.Orthogonal,
+                corner: 5,
+                curve: go.Link.JumpOver
+            },
+            $(go.Shape,  // the link shape
+              {
+                  isPanelMain: true,
+                  stroke: "#303B45",
+                  strokeWidth: 2.5
+              }),
+            $(go.TextBlock,  // the "from" label
+              {
+                  textAlign: "center",
+                  font: "bold 14px sans-serif",
+                  stroke: "#1967B3",
+                  segmentIndex: 0,
+                  segmentOffset: new go.Point(NaN, NaN),
+                  segmentOrientation: go.Link.OrientUpright
+              },
+              new go.Binding("text", "text")),
+            $(go.TextBlock,  // the "to" label
+              {
+                  textAlign: "center",
+                  font: "bold 14px sans-serif",
+                  stroke: "#1967B3",
+                  segmentIndex: -1,
+                  segmentOffset: new go.Point(NaN, NaN),
+                  segmentOrientation: go.Link.OrientUpright
+              },
+              new go.Binding("text", "toText"))
+          );
+
+        return myDiagram;
+    }
+
+    function start(diagram, association, data) {
+
         var nodeDataArray = [];
         var linkDataArray = [];
 
@@ -41,6 +167,7 @@
             this.figure = figure;
             this.color = color;
         }
+
         function LinkItem(from, to, text, toText) {
             this.from = from;
             this.to = to;
@@ -68,7 +195,7 @@
             if (data[i]['Key'] != undefined) {
 
                 if (data[i]['Key'] instanceof Array) {
-                    for (var ind = 0; ind < data[i]['Key'].length;ind++) {
+                    for (var ind = 0; ind < data[i]['Key'].length; ind++) {
 
                         if (data[i]['Key'][ind]['PropertyRef']['@Name'] === property) {
                             return true;
@@ -88,7 +215,7 @@
         function jsonDataAnalize(data) {
             var $$ = go.GraphObject.make;
             var yellowgrad = $$(go.Brush, go.Brush.Linear, { 0: "rgb(254, 221, 50)", 1: "rgb(254, 182, 50)" });
-            for (var i = 0; i < data.length;i++) {
+            for (var i = 0; i < data.length; i++) {
 
                 var newTable = new CreateTable();
                 newTable.setKey(data[i]['@Name']);
@@ -99,7 +226,7 @@
                 if (data[i]['Property'] != undefined) {
 
                     if (data[i]['Property'] instanceof Array) {
-                        for (var ind = 0; ind < data[i]['Property'].length;ind++) {
+                        for (var ind = 0; ind < data[i]['Property'].length; ind++) {
 
                             if (checkIsKey(i, data[i]['Property'][ind]['@Name'], data)) {
                                 var newItem = new CreateItem(data[i]['Property'][ind]['@Name'], true, "Decision", yellowgrad);
@@ -141,7 +268,7 @@
 
                 var tableFrom = association[i]['End'][0]['@Type'].split('.')[1];
                 var tableTo = association[i]['End'][1]['@Type'].split('.')[1];
-                for (var ind = 0; ind < data.length;ind++) {
+                for (var ind = 0; ind < data.length; ind++) {
                     if (data[ind]['@Name'] === tableFrom) {
                         if (data[ind]['@BaseType']) {
                             newLinkItem.setFrom(data[ind]['@Name'] + ' (BaseType: ' + data[ind]['@BaseType'].split('.')[1] + ' )');
@@ -159,133 +286,12 @@
         }
         jsonLinkAnalize(association, data);
 
-        function init() {
-            if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
-            var $ = go.GraphObject.make;  // for conciseness in defining templates
-
-            myDiagram =
-              $(go.Diagram, elementId,  // must name or refer to the DIV HTML element
-                {
-                    initialContentAlignment: go.Spot.Center,
-                    allowDelete: false,
-                    allowCopy: false,
-                    //  allowZoom: true,
-                    //  autoScale: go.Diagram.UniformToFill,
-                    initialAutoScale: go.Diagram.UniformToFill,
-                      layout: $(go.ForceDirectedLayout),
-                      "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom
-                });
-
-            // define several shared Brushes
-            var bluegrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(150, 150, 250)", 0.5: "rgb(86, 86, 186)", 1: "rgb(86, 86, 186)" });
-            var greengrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(158, 209, 159)", 1: "rgb(67, 101, 56)" });
-            var redgrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(206, 106, 100)", 1: "rgb(180, 56, 50)" });
-            var yellowgrad = $(go.Brush, go.Brush.Linear, { 0: "rgb(254, 221, 50)", 1: "rgb(254, 182, 50)" });
-            var lightgrad = $(go.Brush, go.Brush.Linear, { 1: "#E6E6FA", 0: "#FFFAF0" });
-
-            // the template for each attribute in a node's array of item data
-            var itemTempl =
-              $(go.Panel, "Horizontal",
-                $(go.Shape,
-                  { desiredSize: new go.Size(10, 10) },
-                  new go.Binding("figure", "figure"),
-                  new go.Binding("fill", "color")),
-                $(go.TextBlock,
-                  {
-                      stroke: "#333333",
-                      font: "bold 14px sans-serif"
-                  },
-                  new go.Binding("text", "", go.Binding.toString))
-              );
-
-            // define the Node template, representing an entity
-            myDiagram.nodeTemplate =
-              $(go.Node, "Auto",  // the whole node panel
-                {
-                    selectionAdorned: true,
-                    resizable: true,
-                    layoutConditions: go.Part.LayoutNone,
-                    fromSpot: go.Spot.AllSides,
-                    toSpot: go.Spot.AllSides,
-                    isShadowed: true,
-                    shadowColor: "#C5C1AA"
-                },
-                new go.Binding("location", "location").makeTwoWay(),
-                // define the node's outer shape, which will surround the Table
-                $(go.Shape, "Rectangle",
-                  { fill: lightgrad, stroke: "#756875", strokeWidth: 3 }),
-                $(go.Panel, "Table",
-                  { margin: 8, stretch: go.GraphObject.Fill },
-                  $(go.RowColumnDefinition, { row: 0, sizing: go.RowColumnDefinition.None }),
-                  // the table header
-                  $(go.TextBlock,
-                    {
-                        row: 0, alignment: go.Spot.Center,
-                        font: "bold 16px sans-serif"
-                    },
-                    new go.Binding("text", "key")),
-                  // the list of Panels, each showing an attribute
-                  $(go.Panel, "Vertical",
-                    {
-                        row: 1,
-                        padding: 3,
-                        alignment: go.Spot.TopLeft,
-                        defaultAlignment: go.Spot.Left,
-                        stretch: go.GraphObject.Horizontal,
-                        itemTemplate: itemTempl
-                    },
-                    new go.Binding("itemArray", "items"))
-                )  // end Table Panel
-              );  // end Node
-
-            // define the Link template, representing a relationship
-            myDiagram.linkTemplate =
-              $(go.Link,  // the whole link panel
-                {
-                    selectionAdorned: true,
-                    layerName: "Foreground",
-                    reshapable: true,
-                    routing: go.Link.Orthogonal,
-                    corner: 5,
-                    curve: go.Link.JumpOver
-                },
-                $(go.Shape,  // the link shape
-                  {
-                      isPanelMain: true,
-                      stroke: "#303B45",
-                      strokeWidth: 2.5
-                  }),
-                $(go.TextBlock,  // the "from" label
-                  {
-                      textAlign: "center",
-                      font: "bold 14px sans-serif",
-                      stroke: "#1967B3",
-                      segmentIndex: 0,
-                      segmentOffset: new go.Point(NaN, NaN),
-                      segmentOrientation: go.Link.OrientUpright
-                  },
-                  new go.Binding("text", "text")),
-                $(go.TextBlock,  // the "to" label
-                  {
-                      textAlign: "center",
-                      font: "bold 14px sans-serif",
-                      stroke: "#1967B3",
-                      segmentIndex: -1,
-                      segmentOffset: new go.Point(NaN, NaN),
-                      segmentOrientation: go.Link.OrientUpright
-                  },
-                  new go.Binding("text", "toText"))
-              );
-
-            // create the model for the E-R diagram
-
-
-            myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-
-            myDiagram.model.undoManager.isEnabled = true;
+        function draw() {
+            diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+            diagram.model.undoManager.isEnabled = true;
         }
 
-        init();
+        draw();
     }
 
 

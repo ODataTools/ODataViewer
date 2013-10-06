@@ -251,7 +251,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="changeDataUrl(newOdataUrl)" style="padding-left: 50px; padding-right: 50px;">Start</button>
+                <button id="change-url-btn" type="button" class="btn btn-success" data-dismiss="modal" ng-click="changeDataUrl(newOdataUrl)" style="padding-left: 50px; padding-right: 50px;">Start</button>
             </div>
 
         </div>
@@ -337,7 +337,7 @@
                         <li class="member row" ng-repeat="member in team">
 
                             <div class="col-md-4">
-                                <img class="img-responsive" src="{{member.photoUrl}}" />
+                                <img class="img-responsive" ng-src="{{member.photoUrl}}" />
 
 
                             </div>
@@ -366,7 +366,7 @@
                         <div ng-repeat="member in mentors" class="col-md-6">
                             <div class="row">
                                 <div class="member">
-                                    <img class="img-responsive" src="{{member.photoUrl}}" />
+                                    <img class="img-responsive" ng-src="{{member.photoUrl}}" />
                                     <label><a href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>{{member.name}}</a></label>
 
 
