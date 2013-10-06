@@ -28,8 +28,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         columnDefs: 'columnDefs'
     };
 
-
-
     $scope.sampleLinks = [
         "http://services.odata.org/V3/OData/OData.svc",
         "http://services.odata.org/V3/Northwind/Northwind.svc"
@@ -38,42 +36,47 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $scope.team = [
         {
             name: "Hasan Abo-Shally (Team Leader)",
-            photoUrl: "resources/photos/color/hasan.jpg",
+            photoUrl: "resources/images/team/hasan.jpg",
             linkedin: "http://www.linkedin.com/profile/view?id=183930974",
             description: "Hasan led the team developing the project.<br />He worked on the application's structure, the user interface, integrating the addons into the tool, and some other stuff."
         },
         {
             name: "Ghassan Fadila",
-            photoUrl: "resources/photos/color/ghassan.jpg",
+            photoUrl: "resources/images/team/ghassan.jpg",
             linkedin: "http://il.linkedin.com/pub/ghassan-fadila/82/1b2/56/ ",
             description: "Ghassan worked on the intellisense plugin, on rest and the oData server with Jaydata and mongoDB, Design the database and the server logic and add the basic functionality for users and the urls."
         },
         {
             name: "Hakam Kittany",
-            photoUrl: "resources/photos/color/hakam.jpg",
+            photoUrl: "resources/images/team/hakam.jpg",
             linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
             description: "Hakam worked on the tree and entity-graph plugins for displaying the meta-data, and wrapped them into AngularJS directives."
         },
         {
             name: "Haytham Biadse",
-            photoUrl: "resources/photos/color/haytham.jpg",
+            photoUrl: "resources/images/team/haytham.jpg",
             linkedin: "http://il.linkedin.com/pub/haytham-biadse/12/154/230/",
             description: "Haytham worked on the <a href='http://gallery.odatatools.org'>Odata Gallery</a> server side, the server is built with NodeJS and uses MongoDB to store data."
+        },
+        {
+            name: "Omar Masarweh",
+            photoUrl: "resources/images/team/omar.jpg",
+            linkedin: "http://www.linkedin.com/pub/omar-masarweh/82/69b/299?trk=tbr",
+            description: "Omar worked on the Table view and implemented association browsing, as well as saving the history of the odata urls."
+        },
+        {
+            name: "Mohammad Abu Shah",
+            photoUrl: "resources/images/team/shah.jpg",
+            //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
+            description: "Mohammad worked mainly on the testing of the intellisense plugin, and helped with testing the tool."
         }
-        //,
-        //{
-        //    name: "Mohammad Abu Shah",
-        //    photoUrl: "resources/photos/color/shah.jpg",
-        //    //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
-        //    description: "Mohammad worked on the testing of the intellisense plugin."
-        //}
     ];
 
     $scope.mentors = [
         {
             //<a href='http://dataservicestool.codeplex.com/'></a>
             name: "Eyal Vardi (Mentor-E4D)",
-            photoUrl: "resources/photos/color/eyal.jpg",
+            photoUrl: "resources/images/team/eyal.jpg",
             linkedin: "http://www.linkedin.com/profile/view?id=18109570",
             // description: "Eyal has a windows based application for viewing OData, and he came up with the idea of making a web-based application for helping developers using OData.<br />Eyal mentored the project and helped the team with several technical issues."
             description: "Eyal <strong>came up with the idea</strong>, he mentored the project and helped the team with several technical issues."
@@ -81,7 +84,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         },
         {
             name: "Shalom Weiss (Mentor-Tsofen)",
-            photoUrl: "resources/photos/color/shalom.jpg",
+            photoUrl: "resources/images/team/shalom.jpg",
             linkedin: "il.linkedin.com/pub/shalom-weiss/1/754/b76/",
             description: "Shalom was the admenstrative mentor, he made sure everything goes well, and also helped with testing the tool."
         }
@@ -115,7 +118,6 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             snapper.close();
             $('#intellisense-input').focus();
 
-
         });
 
         tour.goto(1);
@@ -136,7 +138,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             $scope.$safeApply(function () {
                 if (isXml)
                     $scope.xmlData = result.data;
-                else{
+                else {
                     $scope.jsonData = result.data;
                     var aa = getAssociations();
                     $scope.columnDefs = buildColumns(aa);
@@ -168,10 +170,10 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
         if ($scope.currentUrl)
             $scope.loadData();
     });
-    
-     //****************************************************************************************************
+
+    //****************************************************************************************************
     // TODO: put code in service/directive
-    
+
     $scope.GoTo = function (row, clickedColl) {
         var id;
         for (var k in row.entity) {
@@ -182,8 +184,8 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
                 }
             }
         }
-        $scope.intellisenseQuery += "(" + id.toString() + ")/" + clickedColl; 
-        $scope.loadData();        
+        $scope.intellisenseQuery += "(" + id.toString() + ")/" + clickedColl;
+        $scope.loadData();
     }
     function buildColumns(associationArray) {
         var result = [];

@@ -3,7 +3,7 @@
 angular.module('Plugins').directive('treeView', function () {
     return {
         restrict: 'E',
-        templateUrl: 'app-plugins/tree-view/template.html',
+        templateUrl: 'app-plugins/tree-view/treeview.html',
         scope: {
             sourceData: '='
         },
@@ -27,7 +27,7 @@ angular.module('Plugins').directive('treeView', function () {
                         ul_Entity.append(li_keys);
                         ul = $('<ul>');
                         if (data[i]['Key'] instanceof Array) {
-                            for (var ind = 0; ind < data[i]['Key'].length;ind++) {
+                            for (var ind = 0; ind < data[i]['Key'].length; ind++) {
 
                                 ul.append($('<li>')
                                     .append($('<a class="key">').html(data[i]['Key'][ind]['PropertyRef']['@Name'])));
@@ -48,7 +48,7 @@ angular.module('Plugins').directive('treeView', function () {
                         ul_Entity.append(li_properties);
                         ul = $('<ul>');
                         if (data[i]['Property'] instanceof Array) {
-                            for (var ind = 0; ind < data[i]['Property'].length;ind++) {
+                            for (var ind = 0; ind < data[i]['Property'].length; ind++) {
 
                                 ul.append($('<li>')
                                     .append($('<a class="property">').html(data[i]['Property'][ind]['@Name'])));
@@ -69,7 +69,7 @@ angular.module('Plugins').directive('treeView', function () {
                         ul_Entity.append(li_navProp);
                         ul = $('<ul>');
                         if (data[i]['NavigationProperty'] instanceof Array) {
-                            for (var ind = 0; ind < data[i]['NavigationProperty'].length;ind++) {
+                            for (var ind = 0; ind < data[i]['NavigationProperty'].length; ind++) {
 
                                 ul.append($('<li>')
                                     .append($('<a class="link">').html(data[i]['NavigationProperty'][ind]['@Name'])));
@@ -105,8 +105,11 @@ angular.module('Plugins').directive('treeView', function () {
                     } else {
                         sets = schema.EntityContainer.EntitySet;
                         types = schema.EntityType;
-                        nameSpace=schema['@Namespace'];
+                        nameSpace = schema['@Namespace'];
                     }
+
+                    //HASAN
+                    $('#adoptme').html('');
 
                     $('#adoptme')
                     .append($('<ul>')
@@ -118,6 +121,8 @@ angular.module('Plugins').directive('treeView', function () {
                     $(function () {
                         $("#adoptme").jstree({
                             "themes": {
+                                "open_parents": true,
+                                "load_open": true,
                                 "theme": "classic",
                                 "dots": true,
                                 "icons": true
