@@ -69,6 +69,12 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             photoUrl: "resources/images/team/shah.jpg",
             //linkedin: "http://www.linkedin.com/pub/hakam-kittany/26/930/128",
             description: "Mohammad worked mainly on the testing of the intellisense plugin, and helped with testing the tool."
+        },
+        {
+            name: "Samar Naser",
+            photoUrl: "resources/images/team/samar.jpg",
+            linkedin: "http://www.linkedin.com/pub/samar-naser/6b/399/72a",
+            description: "Samar worked on displaying the meta-data as tree, and prepared the project presentation."
         }
     ];
 
@@ -88,6 +94,7 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
             linkedin: "il.linkedin.com/pub/shalom-weiss/1/754/b76/",
             description: "Shalom was the admenstrative mentor, he made sure everything goes well, and also helped with testing the tool."
         }
+
     ]
 
 
