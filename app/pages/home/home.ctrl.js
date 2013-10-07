@@ -351,4 +351,12 @@ app.controller("HomeCtrl", function ($scope, $http, $routeParams, HistoryManager
     $('.odata-links li').click(function () {
         alert("a");
     });
+
+    $scope.onTreeNodeClick = function (nodeText) {
+      
+        $scope.$apply(function () {
+            $scope.intellisenseQuery += nodeText;
+        });
+
+    }
 });

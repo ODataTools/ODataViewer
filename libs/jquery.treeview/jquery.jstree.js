@@ -280,7 +280,7 @@
 				'.jstree a { display:inline-block; border:1px solid transparent; font-size:110%; padding-top:1px!important; padding-bottom:1px!important; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } ' +
 				'.jstree a:focus { outline: none; } ' + 
 				'.jstree a > ins { height:16px; width:16px; } ' + 
-				'.jstree a > .jstree-icon { margin-right:3px; } ' + 
+				'.jstree a > .jstree-icon { margin-right:3px!important; } ' + 
 				'.jstree-rtl a > .jstree-icon { margin-left:3px; margin-right:0; } ' + 
 				'li.jstree-open > ul { display:block; } ' + 
 				'li.jstree-closed > ul { display:none; } ';
@@ -299,8 +299,8 @@
 				'.jstree-rtl li li { margin-left:0px; margin-right:18px; } ' + 
 				'li.jstree-open ul { display:block; } ' + 
 				'li.jstree-closed ul { display:none !important; } ' + 
-				'.jstree li a { display:inline; border-width:0 !important; padding:0px 2px !important; } ' + 
-				'.jstree li a ins { height:16px; width:16px; margin-right:3px; } ' + 
+				'.jstree li a { display:inline; border-width:0 !important; padding:2px 2px !important; } ' + 
+				'.jstree li a ins { height:16px; width:16px;  } ' + 
 				'.jstree-rtl li a ins { margin-right:0px; margin-left:3px; } ';
 		}
 		// Correct IE 7 (shifts anchor nodes onhover)
@@ -350,7 +350,7 @@
 				if(this._get_settings().core.rtl) {
 					this.get_container().addClass("jstree-rtl").css("direction", "rtl");
 				}
-				this.get_container().html("<ul><li class='jstree-last jstree-leaf'><ins>&#160;</ins><a class='jstree-loading' href='#'><ins class='jstree-icon'>&#160;</ins>" + this._get_string("loading") + "</a></li></ul>");
+				this.get_container().html("<ul><li class='jstree-last jstree-leaf'><ins>&#160;</ins><a class='jstree-loading' href='#'><ins class='jstree-icon'>&#160;</ins><span>" + this._get_string("loading") + "</span></a></li></ul>");
 				this.data.core.li_height = this.get_container_ul().find("li.jstree-closed, li.jstree-leaf").eq(0).height() || 18;
 
 				this.get_container()

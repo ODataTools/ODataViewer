@@ -6,7 +6,7 @@
                     <div class="col-md-12" id="settings">
 
 
-                        <tree-view source-data="metadata"></tree-view>
+                        <tree-view source-data="metadata" on-node-click="onTreeNodeClick(nodeText)"></tree-view>
 
 
 
@@ -147,7 +147,7 @@
                             <h3>Metadata Graph</h3>
                         </header>
 
-                        <div style="position:relative">
+                        <div style="position: relative">
                             <!--<div id="hide-it"></div>-->
                             <div graph-view source-data="metadata"></div>
                         </div>
@@ -280,9 +280,22 @@
 
                 <p><a href="http://www.odata.org/" target="_blank">The Open Data Protocol (OData)</a> is a Web protocol for querying and updating data that provides a way to unlock your data and free it from silos that exist in applications today (<a href="http://www.odata.org/introduction/" target="_blank">more</a>).</p>
 
+
                 <p>
-                    <strong>ODataViewer</strong> is an open-source online tool for helping developers using OData to query OData URLs and see the results.
+                    <strong>ODataViewer</strong> is an online tool for helping developers query OData URLs and see the results.
+                    The tool was built to be pluggable, so developers can develop more and more plugins.
+                    Currently, the tool supports the following plugins:
                 </p>
+
+                <ul>
+                    <li>Query auto-completion based on the provided URL.</li>
+                    <li>Displaying the meta-data as an entities-graph (with connections).</li>
+                    <li>Displaying the meta-data as a hierarchical tree.</li>
+                    <li>Displaying the queried data as table (supports associations navigation).</li>
+                    <li>Displaying the queried data as XML.</li>
+                    <li>Displaying the queried data as JSON.</li>
+
+                </ul>
 
                 <p>
                     The tool was developed as the graduation project of The Hybrid-Apps development course (Tsofen13) by <a href="http://tsofen.org/" target="_blank">Tsofen</a>, mentored by <a href="http://e4d.co.il/">E4D</a> And its part of the <a href="http://odatatools.org/">ODataTools</a> open-source project.
@@ -291,7 +304,7 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                         <a href="https://github.com/ODataTools">
-                            <img style="display: block; width: 100%; margin: 20px auto;" src="resources/on-github.png" />
+                            <img style="display: block; width: 100%; margin: 0px auto;" src="resources/on-github.png" />
                         </a>
                     </div>
 

@@ -5,7 +5,8 @@ angular.module('Plugins').directive('treeView', function () {
         restrict: 'E',
         templateUrl: 'app-plugins/tree-view/treeview.html',
         scope: {
-            sourceData: '='
+            sourceData: '=',
+            onNodeClick: '&'
         },
         link: function (scope, iElement, iAttrs, controller) {
 
@@ -13,7 +14,7 @@ angular.module('Plugins').directive('treeView', function () {
 
                 var ul_Entities = $('<ul>');
 
-                for (var i = 0; i < data.length;i++) {
+                for (var i = 0; i < data.length; i++) {
 
                     var li_Entity = $('<li >')
                         .append($('<a class="entity">').html(data[i]['@Name'])),
@@ -120,6 +121,7 @@ angular.module('Plugins').directive('treeView', function () {
                     .append(tree(types));
 
                     $(function () {
+
                         $("#adoptme").jstree({
                             "types": {
                                 "types": {
@@ -141,13 +143,20 @@ angular.module('Plugins').directive('treeView', function () {
                             },
                             "plugins": ["themes", "html_data", "types", "ui"]
                         });
-                        
+
+
                     });
-                    setTimeout(function () { $('#adoptme').jstree('open_all')},25);
-                   
+
+
+                    setTimeout(function () { $('#adoptme').jstree('open_all') }, 25);
+
+
+                    setTimeout(function () { $('#adoptme li a').click(function () { scope.onNodeClick({ nodeText: $(this).text() }); }); }, 25);
+
                 }
 
             });
+
 
         }
     }
